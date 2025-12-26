@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, ExternalLink, Code, User, BookOpen, Send, Database, Cpu } from 'lucide-react';
+import { ChevronDown, Github, ExternalLink, Code, User, BookOpen, Send, Database} from 'lucide-react';
 import './App.css';
 
 // --- TES DONNÉES PERSONNELLES (Basées sur ton CV et README) ---
@@ -29,7 +29,7 @@ const DATA = {
                 "Développement d'une Web App interactive (Streamlit) pour simuler les risques en temps réel.",
                 "Identification autonome des facteurs de risque (Taille 'H' et Proximité 'moid')."
             ],
-            image: "/app_monitor.png",
+            image: "/portfolio/app_monitor.png",
             link: "https://github.com/K4yan0/asteroid-risk-prediction"
         },
         {
@@ -44,7 +44,7 @@ const DATA = {
                 "Le CNN 1D a appris automatiquement les signatures de transit sur les données brutes.",
                 "Amélioration significative des scores F1 et PR-AUC par rapport aux méthodes classiques."
             ],
-            image: "/logo.png",
+            image: "/portfolio/logo.png",
             link: "https://github.com/K4yan0/exoplanet-detection-ml"
         }
     ],
@@ -56,8 +56,14 @@ const DATA = {
 };
 
 // --- COMPOSANTS UI ---
+interface SectionProps {
+    id: string;
+    title: string;
+    children: React.ReactNode;
+    className?: string;
+}
 
-const Section = ({ id, title, children, className = "" }: any) => (
+const Section = ({ id, title, children, className = "" }: SectionProps) => (
     <section id={id} className={`py-20 px-6 md:px-20 ${className}`}>
         <div className="max-w-5xl mx-auto">
             <motion.h2
@@ -74,7 +80,7 @@ const Section = ({ id, title, children, className = "" }: any) => (
     </section>
 );
 
-const Card = ({ children, className="" }: any) => (
+const Card = ({ children, className="" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 ${className}`}>
         {children}
     </div>

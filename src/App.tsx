@@ -46,12 +46,27 @@ const DATA = {
             ],
             image: "/portfolio/logo.png",
             link: "https://github.com/K4yan0/exoplanet-detection-ml"
+        },
+        {
+            id: 3,
+            title: "Infinite Flight",
+            tags: ["Arduino", "IoT & 4G", "Impression 3D", "Électronique", "C++"],
+            context: "Projet ESIEA - Drone de Sauvetage & Surveillance",
+            desc: "Conception d'un drone longue portée (150km) capable de missions de sauvetage et de détection d'incendies en autonomie.",
+            details: [
+                "Performance : Extension de l'autonomie à 4h30 et portée de 150km via modifications aérodynamiques et batterie dédiée.",
+                "Système Embarqué : Intégration de capteurs (T°/Humidité/Flamme) et télémétrie 4G pour le monitoring temps réel.",
+                "Mécanique & CAO : Conception et impression 3D de pièces légères pour adapter un châssis Parrot aux contraintes 'Long Range'.",
+                "Payload Actif : Développement d'un système de largage par électroaimants guidé par GPS pour les kits de secours."
+            ],
+            image: "/portfolio/drone_project.png",
+            link: "https://www.esiea.fr/infinite-flight-projet-etudiant-de-drone-de-surveillance-et-de-sauvetage/"
         }
     ],
     skills: [
         { name: "IA & Data", icons: "TensorFlow, Keras, Scikit-learn, Pandas", desc: "Machine Learning, Deep Learning, Data Analysis" },
         { name: "Dev & Outils", icons: "Python, C, Java, SQL, Git, Docker", desc: "Développement logiciel rigoureux, CI/CD" },
-        { name: "Soft Skills", icons: "Adaptabilité, Gestion, Communication", desc: "Trésorier BDE (Gestion budget), Stage HEGP (Autonomie)" }
+        { name: "Soft Skills", icons: "Adaptabilité, Capacité d'analyse, Travail d'équipe", desc: "Trésorier BDE (Travail d'équipe & Gestion), Stage HEGP (Autonomie)" }
     ]
 };
 
@@ -209,7 +224,7 @@ function App() {
                                             </div>
                                         </div>
                                         <a href={project.link} target="_blank" className="flex items-center gap-2 text-blue-600 font-bold hover:underline mt-4 md:mt-0">
-                                            Voir le code <ExternalLink size={16} />
+                                            En savoir plus <ExternalLink size={16} />
                                         </a>
                                     </div>
 
@@ -252,7 +267,7 @@ function App() {
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                     <h3 className="text-2xl font-bold mb-4">Vision Professionnelle</h3>
                     <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">
-                        "Je souhaite devenir un ingénieur capable de faire le pont entre la recherche en IA et les contraintes physiques des systèmes embarqués, pour contribuer à des projets aérospatiaux innovants et sûrs."
+                        "Je souhaite devenir un ingénieur capable de faire le pont entre la recherche en IA et les contraintes physiques des systèmes embarqués. Mon ambition est de concevoir des systèmes autonomes fiables au sein d'équipes R&D innovantes, que ce soit pour l'aérospatial, la robotique ou les technologies critiques."
                     </p>
                 </div>
             </Section>

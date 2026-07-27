@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { Tag } from '../components/Tag';
+
+const techStack = [
+  "TypeScript", "React", "Next.js", "Astro", "Tailwind CSS", 
+  "Node.js", "Python", "Go", "Docker", "AWS", "PostgreSQL", 
+  "Redis", "GraphQL", "Figma"
+];
+---
+
+<BaseLayout title="About | Developer Portfolio" description="About the engineer behind the systems.">
+  <div class="max-w-3xl mx-auto space-y-24">
+    
+    <!-- Hero Text -->
+    <section class="space-y-8 border-b border-cohere-hairline pb-16">
+      <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
+        Driven by <br/> constraints.
+      </h1>
+      <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
+        I am a software engineer obsessed with the intersection of high-performance architecture and austere design. I believe that true elegance in code and interface comes from stripping away the unnecessary.
+      </p>
+    </section>
+
+    <!-- Manifesto / Deep Dive -->
+    <section class="space-y-12">
+      <div class="space-y-6">
+        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Philosophy</h2>
+        <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
+          <p>
+            The software industry is plagued by bloat. We use gigabytes of memory to render static text, and ship massive JavaScript payloads to draw shadows on cards. This portfolio is a rejection of that trend.
+          </p>
+          <p>
+            When building systems—whether it's an AI agent runtime or a frontend framework—I strictly adhere to a few core tenets: deterministic state, static typing, and minimizing the critical path.
+          </p>
+        </div>
+      </div>
+      
+      <div class="space-y-6 pt-8">
+        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Arsenal</h2>
+        <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
+          Tools are just means to an end, but selecting the right ones allows us to build leverage. Below is the primary stack I use to architect solutions.
+        </p>
+        
+        <div class="flex flex-wrap gap-3 pt-4">
+          {techStack.map(tech => (
+            <Tag variant="tech" label={tech} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

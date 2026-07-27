@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { Button } from '../components/Button';
+---
+<BaseLayout title="Contact | System." description="Get in touch.">
+  <!-- Following Cohere's contact-form-card pattern on a dark background -->
+  <div class="max-w-6xl mx-auto rounded-[22px] overflow-hidden border border-cohere-hairline flex flex-col md:flex-row shadow-sm">
+    <div class="w-full md:w-1/2 p-12 md:p-20 flex flex-col justify-between bg-cohere-nearblack text-white">
+      <div>
+        <h1 class="font-display text-[48px] md:text-[56px] leading-[1.1] tracking-[-0.48px] mb-6">Initialize <br/> Connection.</h1>
+        <p class="font-body text-[18px] text-cohere-muted max-w-md leading-[1.6]">
+          I am currently accepting inquiries for senior architecture roles and high-impact contract engineering.
+        </p>
+      </div>
+      <div class="mt-20">
+        <span class="font-mono text-[12px] uppercase tracking-wider text-cohere-muted block mb-2">Direct Channel</span>
+        <a href="mailto:hello@system.com" class="font-display text-[24px] tracking-tight text-white hover:text-cohere-softcoral transition-colors">hello@system.com</a>
+      </div>
+    </div>
+    
+    <div class="w-full md:w-1/2 p-12 md:p-20 bg-white">
+      <form class="space-y-8" onsubmit="event.preventDefault();">
+        <div class="space-y-2">
+          <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Name</label>
+          <input type="text" class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent" placeholder="Jane Doe" />
+        </div>
+        
+        <div class="space-y-2">
+          <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Email</label>
+          <input type="email" class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent" placeholder="jane@company.com" />
+        </div>
+        
+        <div class="space-y-2">
+          <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Transmission</label>
+          <textarea rows="4" class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent resize-none" placeholder="How can we collaborate?"></textarea>
+        </div>
+        
+        <Button variant="primary" className="w-full">Send Message</Button>
+      </form>
+    </div>
+  </div>
+</BaseLayout>

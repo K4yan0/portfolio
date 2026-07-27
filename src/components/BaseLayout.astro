@@ -8,10 +8,18 @@ interface Props {
 }
 
 const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio." } = Astro.props;
+const lang = Astro.currentLocale || 'en';
+const base = lang === 'fr' ? '/fr' : '';
+
+// Compute the path to switch language correctly
+const currentPath = Astro.url.pathname;
+const switchLangPath = lang === 'en' 
+  ? `/fr${currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath}` 
+  : currentPath.replace(/^\/fr/, '') || '/';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,62 +28,73 @@ const { title = "Developer | Portfolio", description = "A minimalist and premium
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- Seamless page transitions -->
     <ClientRouter />
     
-    <!-- Google Fonts for fallbacks matching Cohere's system -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-cohere-canvas text-cohere-ink font-body min-h-screen flex flex-col selection:bg-cohere-blue selection:text-white antialiased">
-    <!-- Header (Three-zone layout) -->
     <header class="w-full px-6 py-8 md:px-12 border-b border-cohere-hairline flex items-center justify-between">
-      <div class="w-1/3">
-        <a href="/" class="font-display font-medium text-xl tracking-tight text-cohere-black no-underline">
+      <div class="w-1/4">
+        <a href={`${base}/`} class="font-display font-medium text-xl tracking-tight text-cohere-black no-underline">
           System<span class="text-cohere-coral">.</span>
         </a>
       </div>
       
-      <nav class="w-1/3 flex justify-center space-x-8">
-        <a href="/about" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">About</a>
-        <a href="/projects" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">Projects</a>
-        <a href="/blog" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">Blog</a>
+      <nav class="w-1/2 flex justify-center space-x-6 md:space-x-8">
+        <a href={`${base}/about`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
+          {lang === 'fr' ? 'À propos' : 'About'}
+        </a>
+        <a href={`${base}/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
+          {lang === 'fr' ? 'Projets' : 'Projects'}
+        </a>
+        <a href={`${base}/blog`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
+          {lang === 'fr' ? 'Recherche' : 'Blog'}
+        </a>
       </nav>
       
-      <div class="w-1/3 flex justify-end">
-        <a href="/contact" class="bg-cohere-nearblack text-white font-body text-[14px] font-medium px-6 py-2 rounded-pill hover:bg-black transition-colors">
+      <div class="w-1/4 flex justify-end items-center gap-6">
+        <a href={switchLangPath} class="font-mono text-[13px] font-medium text-cohere-slate hover:text-cohere-blue transition-colors uppercase tracking-wider">
+          {lang === 'en' ? 'FR' : 'EN'}
+        </a>
+        <a href={`${base}/contact`} class="hidden md:inline-block bg-cohere-nearblack text-white font-body text-[14px] font-medium px-6 py-2 rounded-pill hover:bg-black transition-colors">
           Contact
         </a>
       </div>
     </header>
 
-    <!-- Main Content Slot -->
     <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24">
       <slot />
     </main>
 
-    <!-- Footer -->
     <footer class="w-full bg-cohere-nearblack text-white px-6 py-16 md:px-12 mt-24">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
         <div class="mb-12 md:mb-0">
           <span class="font-display text-2xl tracking-tight text-white mb-4 block">System.</span>
           <span class="font-body text-sm text-cohere-muted block max-w-xs leading-relaxed">
-            A minimalist engineering showcase built with Astro, Tailwind, and deep focus.
+            {lang === 'fr' 
+              ? 'Un portfolio d\'ingénierie minimaliste conçu avec Astro et Tailwind.' 
+              : 'A minimalist engineering showcase built with Astro, Tailwind, and deep focus.'}
           </span>
         </div>
         
         <div class="grid grid-cols-2 gap-16">
           <div class="flex flex-col space-y-4">
             <span class="font-mono uppercase text-[12px] tracking-wider text-cohere-muted">Platform</span>
-            <a href="/projects" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">Projects</a>
-            <a href="/hackathons" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">Hackathons</a>
-            <a href="/blog" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">Research & Blog</a>
+            <a href={`${base}/projects`} class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">
+              {lang === 'fr' ? 'Projets' : 'Projects'}
+            </a>
+            <a href={`${base}/hackathons`} class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">
+              Hackathons
+            </a>
+            <a href={`${base}/blog`} class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">
+              {lang === 'fr' ? 'Recherche & Blog' : 'Research & Blog'}
+            </a>
           </div>
           <div class="flex flex-col space-y-4">
             <span class="font-mono uppercase text-[12px] tracking-wider text-cohere-muted">Connect</span>
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">GitHub</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">X / Twitter</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="font-body text-sm text-white hover:text-cohere-softcoral transition-colors">LinkedIn</a>
           </div>
         </div>

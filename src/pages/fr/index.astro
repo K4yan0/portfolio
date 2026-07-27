@@ -1,24 +1,24 @@
 ---
-import BaseLayout from '../components/BaseLayout.astro';
-import { Button } from '../components/Button';
-import { ProjectCard } from '../components/ProjectCard';
+import BaseLayout from '../../components/BaseLayout.astro';
+import { Button } from '../../components/Button';
+import { ProjectCard } from '../../components/ProjectCard';
 ---
 
-<BaseLayout title="System. | Developer Portfolio" description="A minimalist engineering showcase.">
+<BaseLayout title="System. | Portfolio Développeur" description="Un portfolio d'ingénierie minimaliste.">
   <div class="space-y-40">
     
     <!-- Hero Section -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
       <div class="lg:col-span-7 space-y-10">
         <h1 class="font-display text-[64px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-          Engineering the <br class="hidden md:block"/> invisible.
+          Ingénierie & <br class="hidden md:block"/> Intelligence.
         </h1>
         <p class="font-body text-[18px] md:text-[20px] leading-[1.6] text-cohere-ink max-w-xl opacity-90">
-          I'm a final-year engineering student specializing in Embedded Systems and Artificial Intelligence. Currently pursuing a dual degree at ESIEA and SKEMA Business School (MSc AI for Business Transformation).
+          Étudiant ingénieur en dernière année, spécialisé en Systèmes Embarqués et Intelligence Artificielle. Actuellement en double diplôme à l'ESIEA et SKEMA Business School (MSc AIBT).
         </p>
         <div class="flex flex-wrap items-center gap-6 pt-4">
-          <Button variant="primary" href="/projects">Explore Projects</Button>
-          <Button variant="secondary" href="/about">More About Me</Button>
+          <Button variant="primary" href="/fr/projects">Voir les Projets</Button>
+          <Button variant="secondary" href="/fr/about">À propos de moi</Button>
         </div>
       </div>
       
@@ -32,7 +32,7 @@ import { ProjectCard } from '../components/ProjectCard';
           <div class="absolute bottom-4 left-4 right-4 bg-cohere-nearblack/90 backdrop-blur-md border border-cohere-hairline/20 rounded-lg p-4 flex items-center justify-between">
             <span class="font-mono text-[11px] uppercase tracking-wider text-white">System.Status</span>
             <span class="font-mono text-[11px] uppercase tracking-wider text-cohere-softcoral flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-cohere-softcoral animate-pulse"></span> Open to 2027 Internships
+              <span class="w-1.5 h-1.5 rounded-full bg-cohere-softcoral animate-pulse"></span> Recherche stage 2027
             </span>
           </div>
         </div>
@@ -42,7 +42,7 @@ import { ProjectCard } from '../components/ProjectCard';
     <!-- Experience Timeline -->
     <section class="max-w-4xl">
       <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack mb-16 border-b border-cohere-hairline pb-8">
-        Trajectory
+        Parcours
       </h2>
       
       <div class="relative pl-8 md:pl-0">
@@ -54,12 +54,12 @@ import { ProjectCard } from '../components/ProjectCard';
           <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
             <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-cohere-nearblack rounded-full ring-4 ring-cohere-canvas"></div>
             <div class="md:w-[100px] shrink-0 pt-1">
-              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026 - PRES</span>
+              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026 - PRÉS</span>
             </div>
             <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Dual Degree Candidate</h3>
+              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Double Diplôme (MSc AIBT)</h3>
               <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                SKEMA Business School & ESIEA. MSc Artificial Intelligence for Business Transformation (AIBT).
+                SKEMA Business School & ESIEA. Master of Science en Artificial Intelligence for Business Transformation.
               </p>
             </div>
           </div>
@@ -71,9 +71,9 @@ import { ProjectCard } from '../components/ProjectCard';
               <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026</span>
             </div>
             <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">AI & Data Engineering Intern</h3>
+              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Stagiaire Ingénieur Data & IA</h3>
               <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                NG Metrics (formerly KPIWeb). Developed a connection proxy with impersonation, built an AI Agent inside Excel, and engineered automated accounting analysis tools using PowerBI for SMEs.
+                NG Metrics (anciennement KPIWeb). Développement d'un proxy de connexion avec impersonnalisation, d'un Agent IA pour Excel, et d'une IA d'analyse/reporting comptable sous PowerBI pour les PME.
               </p>
             </div>
           </div>
@@ -85,9 +85,9 @@ import { ProjectCard } from '../components/ProjectCard';
               <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2024</span>
             </div>
             <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Academic Exchange (ML & Quantum)</h3>
+              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Échange Académique (ML & Quantique)</h3>
               <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                SeoulTech (Seoul, South Korea). Completed intensive coursework in Machine Learning and Quantum Computing.
+                SeoulTech (Séoul, Corée du Sud). Semestre intensif avec des cours de Machine Learning et d'Informatique Quantique.
               </p>
             </div>
           </div>
@@ -99,9 +99,9 @@ import { ProjectCard } from '../components/ProjectCard';
               <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2021 - 2027</span>
             </div>
             <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">M.S. Embedded Systems</h3>
+              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Diplôme d'Ingénieur Informatique</h3>
               <p class="font-body text-[16px] leading-[1.6] text-cohere-ink max-w-2xl opacity-90">
-                ESIEA (École Supérieure d'Informatique, Électronique, Automatique). Focused on the intersection of hardware integration and artificial intelligence.
+                ESIEA. Spécialisation en Systèmes Embarqués. J'ai choisi cette filière car l'IA et les systèmes embarqués seront intimement liés dans le futur.
               </p>
             </div>
           </div>
@@ -114,25 +114,25 @@ import { ProjectCard } from '../components/ProjectCard';
     <section>
       <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-cohere-hairline pb-8">
         <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack">
-          Selected Works
+          Projets Récents
         </h2>
-        <a href="/projects" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
-          View All Projects &rarr;
+        <a href="/fr/projects" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
+          Voir tous les projets &rarr;
         </a>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
         <ProjectCard 
           title="Global AI Hackathon 2025"
-          description="Built an autonomous agent system for codebase management."
+          description="Création d'un agent autonome de gestion de code."
           tags={["PYTHON", "LLMS"]}
-          url="/projects/global-hack-2025"
+          url="/fr/projects/global-hack-2025"
         />
         <ProjectCard 
-          title="Portfolio Architecture V2"
-          description="A minimalist showcase emphasizing typography, massive internal padding, and strict border radii."
+          title="Portfolio V2"
+          description="Un portfolio minimaliste mettant l'accent sur la typographie et la performance (Astro SSG)."
           tags={["ASTRO", "TAILWIND"]}
-          url="/projects/portfolio-v2"
+          url="/fr/projects/portfolio-v2"
         />
       </div>
     </section>

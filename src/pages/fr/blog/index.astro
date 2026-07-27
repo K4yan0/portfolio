@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import { Tag } from '../../components/Tag';
+
+const posts = await getCollection('blog');
+// Sort by date descending
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Blog & Research | System." description="Latest articles and technical research.">
+  <div class="max-w-4xl mx-auto space-y-16">
+    <header class="border-b border-cohere-hairline pb-12">
+      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Research & Writing</h1>
+      <p class="font-body text-[20px] text-cohere-muted">Explorations in architecture, intelligence, and design constraints.</p>
+    </header>
+
+    <!-- Following DESIGN.md: Research pages use full-width lists with date and chip columns instead of decorative cards. -->
+    <div class="flex flex-col">
+      {posts.map(post => (
+        <a href={`/blog/${post.id}`} class="group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
+          <div class="md:w-[180px] shrink-0 mb-4 md:mb-0">
+            <time class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors">
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </time>
+          </div>
+          <div class="flex-grow flex flex-col items-start pr-8">
+            <h2 class="font-display text-[24px] tracking-tight text-cohere-nearblack mb-2 group-hover:text-cohere-blue transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="font-body text-[16px] text-cohere-slate line-clamp-2 max-w-xl">
+              {post.data.description}
+            </p>
+          </div>
+          <div class="hidden md:flex flex-wrap gap-2 justify-end w-[180px] shrink-0">
+            {post.data.tags.slice(0, 2).map(tag => (
+              <Tag variant="blog" label={tag} />
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

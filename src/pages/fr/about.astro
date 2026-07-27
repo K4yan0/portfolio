@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import { Tag } from '../../components/Tag';
+
+const techStack = [
+  "Python", "C++", "PowerBI", "Machine Learning", "Quantum Computing", 
+  "Systèmes Embarqués", "Agents IA", "Data Engineering", "Anglais (TOEIC 950)"
+];
+---
+
+<BaseLayout title="À propos | Portfolio Développeur" description="À propos de l'ingénieur derrière les systèmes.">
+  <div class="max-w-3xl mx-auto space-y-24">
+    
+    <!-- Hero Text -->
+    <section class="space-y-8 border-b border-cohere-hairline pb-16">
+      <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
+        Guidé par <br/> la rigueur.
+      </h1>
+      <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
+        Étudiant ingénieur en double diplôme (ESIEA / SKEMA), je construis des ponts entre le hardware bas niveau et l'intelligence artificielle haut niveau.
+      </p>
+    </section>
+
+    <!-- Manifesto / Deep Dive -->
+    <section class="space-y-12">
+      <div class="space-y-6">
+        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Le Parcours</h2>
+        <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
+          <p>
+            Issu d'une formation exigeante (option maths expertes), j'ai très tôt développé une approche structurelle de la résolution de problèmes. Durant mon cursus supérieur, je suis parti un semestre en échange à SeoulTech (Corée du Sud) pour y étudier le Machine Learning et l'Informatique Quantique.
+          </p>
+          <p>
+            Au moment de choisir ma spécialisation, j'ai longuement hésité entre l'IA et les Systèmes Embarqués. J'ai finalement choisi les Systèmes Embarqués, convaincu que ces deux domaines seront intimement liés dans les prochaines années (Edge AI).
+          </p>
+          <p>
+            Mes expériences professionnelles—allant de l'observation dans le service public hospitalier (HEGP) à l'ingénierie technique chez NG Metrics—m'ont fait réaliser à quel point les entreprises ont un besoin crucial d'outils informatiques robustes. Actuellement en double diplôme (MSc AIBT), je serai à la recherche de mon stage de fin d'études pour le second semestre 2027, en France ou à l'international. Je certifie d'ailleurs de mon aisance professionnelle en anglais avec un TOEIC à 950.
+          </p>
+        </div>
+      </div>
+      
+      <div class="space-y-6 pt-8">
+        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">L'Arsenal</h2>
+        <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
+          Ma stack technique fait le lien entre l'exécution matérielle et l'intelligence des données.
+        </p>
+        
+        <div class="flex flex-wrap gap-3 pt-4">
+          {techStack.map(tech => (
+            <Tag variant="tech" label={tech} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

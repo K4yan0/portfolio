@@ -16,4 +16,4 @@ Nous avons conçu plusieurs améliorations matérielles critiques :
 - **Optimisation Énergétique :** Augmentation du temps de vol de base (quelques minutes) à **1h30 - 2h** en concevant un système hybride combinant batteries supplémentaires et panneaux solaires.
 - **Téléopération :** Ajout d'un capteur télémétrique 4G permettant au drone de contourner les limites radio standards. Il peut être téléopéré en direct sur de très grandes distances ou suivre un plan de vol autonome prédéfini.
 
-La rigueur d'ingénierie du projet et les vols d'essai réussis ont permis de remporter le **Prix du Meilleur PST en 2022**.
+La rigueur d'ingénierie du projet et les vols d'essai réussis ont permis de remporter le **Prix du Meilleur PST en 2023**.

@@ -1,13 +1,13 @@
 ---
 title: "Exoplanet Detection XAI"
 description: "An Explainable AI model leveraging NASA TESS APIs to automate exoplanet transit detection."
-launchDate: 2026-01-01
+launchDate: 2026-07-26
 techStack: ["Python", "Machine Learning", "XAI", "Data Analysis"]
 githubUrl: "https://github.com/K4yan0/exoplanet-detection-ml"
 ---
 ## Automating Planetary Discovery
 
-Inspired by the NASA "Planet Hunters TESS" project, I set out to train a custom machine learning model capable of detecting exoplanetary transits, eliminating the need for manual observation on Zooniverse.
+Inspired by the [2025 NASA Space Apps Challenge ("A World Away: Hunting for Exoplanets with AI")](https://www.spaceappschallenge.org/2025/challenges/a-world-away-hunting-for-exoplanets-with-ai/), I embarked on an independent mission to train a custom machine learning model capable of detecting exoplanetary transits, eliminating the need for manual observation on Zooniverse.
 
 ### Architecture & Evolution
 

@@ -16,4 +16,4 @@ We engineered several critical hardware upgrades to the airframe:
 - **Power Optimization:** Extended the baseline flight time from minutes to **1.5h - 2h** by designing a hybrid power system combining supplementary batteries and solar panels.
 - **Teleoperation:** Added a 4G telemetry sensor allowing the drone to bypass standard radio limits. It can be teleoperated live over massive distances or follow a predefined autonomous flight plan.
 
-The project's engineering rigor and successful test flights culminated in winning the **Best PST Award in 2022**.
+The project's engineering rigor and successful test flights culminated in winning the **Best PST Award in 2023**.

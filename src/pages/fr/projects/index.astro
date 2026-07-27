@@ -3,14 +3,16 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import { ProjectCard } from '../../components/ProjectCard';
 
-const projects = await getCollection('projects');
+// Only fetch French projects
+const allProjects = await getCollection('projects');
+const projects = allProjects.filter(p => p.id.startsWith('fr/'));
 projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf());
 ---
-<BaseLayout title="Projects | System." description="A showcase of engineered systems.">
+<BaseLayout title="Projets | System." description="Une vitrine de systèmes d'ingénierie.">
   <div class="space-y-16">
     <header class="border-b border-cohere-hairline pb-12 max-w-4xl">
-      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Engineered Systems</h1>
-      <p class="font-body text-[20px] text-cohere-muted">A collection of autonomous architectures, frameworks, and strict UIs.</p>
+      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Systèmes Ingénierie</h1>
+      <p class="font-body text-[20px] text-cohere-muted">Une collection d'architectures autonomes, frameworks, et modèles de ML.</p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -20,7 +22,7 @@ projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf(
           description={project.data.description}
           tags={project.data.techStack}
           imageUrl={project.data.coverImage}
-          url={`/projects/${project.id}`}
+          url={`/fr/projects/${project.id.replace('fr/', '')}`}
         />
       ))}
     </div>

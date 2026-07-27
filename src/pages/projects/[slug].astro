@@ -6,9 +6,11 @@ import { Tag } from '../../components/Tag';
 import { Button } from '../../components/Button';
 
 export async function getStaticPaths() {
-  const projectsEntries = await getCollection('projects');
-  return projectsEntries.map(entry => ({
-    params: { slug: entry.id },
+  const allProjects = await getCollection('projects');
+  const enProjects = allProjects.filter(p => p.id.startsWith('en/'));
+  
+  return enProjects.map(entry => ({
+    params: { slug: entry.id.replace('en/', '') },
     props: { entry },
   }));
 }

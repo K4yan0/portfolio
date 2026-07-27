@@ -1,14 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
-import BaseLayout from '../../components/BaseLayout.astro';
-import { Tag } from '../../components/Tag';
+import BaseLayout from '../../../components/BaseLayout.astro';
+import { Tag } from '../../../components/Tag';
 
 export async function getStaticPaths() {
   const allEntries = await getCollection('blog');
-  const enEntries = allEntries.filter(p => p.id.startsWith('en/'));
-  return enEntries.map(entry => ({
-    params: { slug: entry.id.replace('en/', '') },
+  const frEntries = allEntries.filter(p => p.id.startsWith('fr/'));
+  return frEntries.map(entry => ({
+    params: { slug: entry.id.replace('fr/', '') },
     props: { entry },
   }));
 }
@@ -17,7 +17,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${entry.data.title} | Blog`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} | Recherche`} description={entry.data.description}>
   <article class="max-w-3xl mx-auto py-12 md:py-20">
     <header class="mb-16 space-y-8">
       {entry.data.coverImage && (
@@ -29,7 +29,7 @@ const { Content } = await render(entry);
       <div class="space-y-6">
         <div class="flex flex-wrap gap-4 items-center border-b border-cohere-hairline pb-6">
           <time class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">
-            {entry.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {entry.data.pubDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
           <div class="w-1 h-1 bg-cohere-hairline rounded-full"></div>
           <div class="flex gap-2">

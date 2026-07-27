@@ -1,7 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import { Button } from '../../components/Button';
 import { ProjectCard } from '../../components/ProjectCard';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(p => p.id.startsWith('fr/'))
+  .sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf())
+  .slice(0, 2);
 ---
 
 <BaseLayout title="System. | Portfolio Développeur" description="Un portfolio d'ingénierie minimaliste.">
@@ -122,18 +129,15 @@ import { ProjectCard } from '../../components/ProjectCard';
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-        <ProjectCard 
-          title="Global AI Hackathon 2025"
-          description="Création d'un agent autonome de gestion de code."
-          tags={["PYTHON", "LLMS"]}
-          url="/fr/projects/global-hack-2025"
-        />
-        <ProjectCard 
-          title="Portfolio V2"
-          description="Un portfolio minimaliste mettant l'accent sur la typographie et la performance (Astro SSG)."
-          tags={["ASTRO", "TAILWIND"]}
-          url="/fr/projects/portfolio-v2"
-        />
+        {featuredProjects.map(project => (
+          <ProjectCard 
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.techStack.slice(0, 3)}
+            imageUrl={project.data.coverImage}
+            url={`/fr/projects/${project.id.replace('fr/', '')}`}
+          />
+        ))}
       </div>
     </section>
 

@@ -3,7 +3,10 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import { ProjectCard } from '../../components/ProjectCard';
 
-const projects = await getCollection('projects');
+// Only fetch English projects
+const allProjects = await getCollection('projects');
+console.log("DEBUG: All project IDs:", allProjects.map(p => p.id));
+const projects = allProjects.filter(p => p.id.startsWith('en/') || p.id.startsWith('en\\'));
 projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf());
 ---
 <BaseLayout title="Projects | System." description="A showcase of engineered systems.">
@@ -20,7 +23,7 @@ projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf(
           description={project.data.description}
           tags={project.data.techStack}
           imageUrl={project.data.coverImage}
-          url={`/projects/${project.id}`}
+          url={`/projects/${project.id.replace('en/', '')}`}
         />
       ))}
     </div>

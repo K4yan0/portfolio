@@ -1,18 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../components/BaseLayout.astro';
-import { Tag } from '../../components/Tag';
+import BaseLayout from '../../../components/BaseLayout.astro';
+import { Tag } from '../../../components/Tag';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts.filter(p => p.id.startsWith('fr/'));
 // Sort by date descending
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-<BaseLayout title="Blog & Research | System." description="Latest articles and technical research.">
+<BaseLayout title="Blog & Recherche | System." description="Derniers articles et recherches techniques.">
   <div class="max-w-4xl mx-auto space-y-16">
-    <header class="border-b border-cohere-hairline pb-12">
-      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Research & Writing</h1>
-      <p class="font-body text-[20px] text-cohere-muted">Explorations in architecture, intelligence, and design constraints.</p>
+    <header class="border-b border-cohere-hairline pb-12 max-w-4xl">
+      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Recherche & Écriture</h1>
+      <p class="font-body text-[20px] text-cohere-muted">Explorations en architecture, intelligence artificielle, et contraintes de design.</p>
     </header>
 
     <!-- Following DESIGN.md: Research pages use full-width lists with date and chip columns instead of decorative cards. -->

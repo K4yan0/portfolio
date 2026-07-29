@@ -18,7 +18,6 @@ Le problème central était que la base de données SQL Server de l'entreprise s
 Pour résoudre ce problème, j'ai conçu un **proxy d'impersonnalisation sur le serveur de l'entreprise**. Ce proxy agit comme un pont sécurisé, établissant un environnement Single Sign-On (SSO). En contournant les contraintes de connexion manuelle de manière sécurisée, j'ai permis un accès fluide et sans mot de passe pour les utilisateurs finaux, tout en maintenant des contrôles d'accès stricts.
 
 ![Schéma d'Architecture Proxy SSO](/images/enterprise-agent-architecture.jpg)
-*(Remplacer cette image par un schéma flouté ou stylisé de votre architecture proxy)*
 
 ### L'Implémentation IA : La Confidentialité Avant Tout
 
@@ -32,7 +31,6 @@ Cependant, envoyer les données de l'entreprise à une API IA tierce était hors
 5. La requête est exécutée localement sur le serveur sécurisé, générant les tableaux croisés dynamiques et les graphiques directement dans Excel.
 
 ![Interface IA Web Add-in Excel](/images/enterprise-agent-excel.jpg)
-*(Remplacer cette image par une capture d'écran de l'add-in Excel)*
 
 ### Pourquoi C'est Important
 

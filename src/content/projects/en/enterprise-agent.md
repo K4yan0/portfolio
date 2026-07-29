@@ -18,7 +18,6 @@ The core issue was that the company's SQL Server database connected to a MOLAP c
 To solve this, I engineered an **impersonation proxy on the company server**. This proxy acts as a secure bridge, establishing a Single Sign-On (SSO) environment. By bypassing the legacy manual connection constraints securely, I enabled seamless, password-less access for the end users while maintaining strict enterprise access controls.
 
 ![SSO Proxy Architecture Diagram](/images/enterprise-agent-architecture.jpg)
-*(Replace this image with a blurred or stylized diagram of your proxy architecture)*
 
 ### The AI Implementation: Privacy First
 
@@ -32,7 +31,6 @@ However, sending enterprise data to a third-party AI API was out of the question
 5. The query is executed locally on the secure server, generating the pivot tables and graphs directly in Excel.
 
 ![Excel Web Add-in AI Interface](/images/enterprise-agent-excel.jpg)
-*(Replace this image with a screenshot of the Excel Web Add-in)*
 
 ### Why This Matters
 

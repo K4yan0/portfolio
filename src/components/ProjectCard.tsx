@@ -13,7 +13,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
   const content = (
     <div className="group h-full flex flex-col bg-white border border-cohere-hairline rounded-lg overflow-hidden transition-all duration-300 hover:border-cohere-ink">
       {imageUrl && (
-        <div className="w-full h-56 bg-cohere-stone overflow-hidden border-b border-cohere-hairline">
+        <div className="w-full h-72 bg-cohere-stone overflow-hidden border-b border-cohere-hairline">
           <img 
             src={imageUrl} 
             alt={title} 

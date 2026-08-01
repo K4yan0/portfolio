@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://K4yan0.github.io',
 
   // If your repo is named 'portfolio', uncomment the line below:
-  base: '/portfolio',
+  //base: '/portfolio',
 
   i18n: {
     defaultLocale: 'en',

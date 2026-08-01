@@ -15,7 +15,7 @@ import { Button } from '../components/Button';
       <div class="mt-20 flex flex-col space-y-8">
         <div>
           <span class="font-mono text-[12px] uppercase tracking-wider text-cohere-muted block mb-2">Direct Channel</span>
-          <a href="mailto:hello@system.com" class="font-display text-[24px] tracking-tight text-white hover:text-cohere-softcoral transition-colors">hello@system.com</a>
+          <a href="mailto:hello-swan@outlook.com" class="font-display text-[24px] tracking-tight text-white hover:text-cohere-softcoral transition-colors">hello-swan@outlook.com</a>
         </div>
         
         <div class="flex gap-8 pt-8 border-t border-[#2a2a30]">
@@ -25,7 +25,7 @@ import { Button } from '../components/Button';
     </div>
     
     <div class="w-full md:w-1/2 p-12 md:p-20 bg-white">
-      <form class="space-y-8" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="space-y-8" action="https://formspree.io/f/xkodlbyp" method="POST">
         <div class="space-y-2">
           <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Name</label>
           <input type="text" name="name" required class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent" placeholder="Jane Doe" />
@@ -41,8 +41,47 @@ import { Button } from '../components/Button';
           <textarea rows="4" name="message" required class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent resize-none" placeholder="How can we collaborate?"></textarea>
         </div>
         
-        <Button variant="primary" className="w-full">Send Message</Button>
+        <Button variant="primary" className="w-full" type="submit">Send Message</Button>
       </form>
     </div>
   </div>
+
+  <script>
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        const originalText = btn.innerText;
+        btn.innerText = 'Sending...';
+        btn.disabled = true;
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          if (response.ok) {
+            form.reset();
+            btn.innerText = 'Message Sent!';
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+            }, 3000);
+          } else {
+            btn.innerText = 'Error sending message';
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+            }, 3000);
+          }
+        } catch (error) {
+          btn.innerText = 'Error sending message';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
 </BaseLayout>

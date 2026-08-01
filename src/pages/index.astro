@@ -142,4 +142,22 @@ const featuredProjects = allProjects
     </section>
 
   </div>
+
+  <script>
+    // Automatic Language Detection (runs only on first visit)
+    const hasVisited = localStorage.getItem('languagePreferenceSet');
+    
+    if (!hasVisited) {
+      // Mark as visited so we don't trap the user in a redirect loop if they manually switch back to English
+      localStorage.setItem('languagePreferenceSet', 'true');
+      
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang.toLowerCase().startsWith('fr')) {
+        // Find the current path and redirect to the French version
+        const currentPath = window.location.pathname;
+        const frPath = currentPath.endsWith('/') ? '/fr/' : '/fr';
+        window.location.replace(frPath);
+      }
+    }
+  </script>
 </BaseLayout>

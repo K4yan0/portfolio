@@ -30,12 +30,12 @@ const featuredProjects = allProjects
       </div>
       
       <div class="lg:col-span-5 relative group hidden md:block">
-        <div class="rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone relative aspect-[4/3] w-full">
-          <img 
-            src="/images/hero.jpg" 
-            alt="Abstract Agent Console" 
-            class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.05]"
-          />
+          <div class="relative w-full aspect-square md:aspect-[4/5] bg-cohere-stone overflow-hidden shadow-2xl">
+            <img 
+              src={`${import.meta.env.BASE_URL}images/hero.jpg`} 
+              alt="Swan - Developer" 
+              class="w-full h-full object-cover grayscale opacity-90 transition-all duration-1000 hover:grayscale-0 hover:opacity-100 hover:scale-105"
+            />
           <div class="absolute bottom-4 left-4 right-4 bg-cohere-nearblack/90 backdrop-blur-md border border-cohere-hairline/20 rounded-lg p-4 flex items-center justify-between">
             <span class="font-mono text-[11px] uppercase tracking-wider text-white">System.Status</span>
             <span class="font-mono text-[11px] uppercase tracking-wider text-cohere-softcoral flex items-center gap-2">

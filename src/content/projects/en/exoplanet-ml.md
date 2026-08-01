@@ -4,7 +4,7 @@ description: "An Explainable AI model leveraging NASA TESS APIs to automate exop
 launchDate: 2026-07-26
 techStack: ["Python", "CNN", "Flask", "NASA MAST API", "Plotly", "Grad-CAM"]
 githubUrl: "https://github.com/K4yan0/exoplanet-detection-ml"
-coverImage: "/images/exoplanet-ml-cover.jpg"
+coverImage: "/portfolio/images/exoplanet-ml-cover.jpg"
 ---
 ## Automating Planetary Discovery
 
@@ -34,7 +34,7 @@ While traditional models like Random Forests struggle to inherently understand s
 
 I trained a lightweight architecture (16 ➝ 32 ➝ 64 filters with Dropout) to prevent overfitting. The network inherently learned the morphological signature of a transit (the steep ingress, flat bottom, and egress), shattering previous ceilings to achieve **90.37% Accuracy** with an AUC of 0.924.
 
-![CNN Performance Metrics](/images/exoplanet-ml-metrics.jpg)
+![CNN Performance Metrics](/portfolio/images/exoplanet-ml-metrics.jpg)
 
 To protect the model against the "Clever Hans" effect (where artificial data ceilings mimic transits), I implemented a **Heuristic Veto**—an engineering guardrail that automatically intercepts and rejects mathematical artifacts with 0% confidence before they reach the neural network.
 
@@ -44,7 +44,7 @@ The entire inference pipeline is wrapped in a modern, dark-mode Flask Web Applic
 
 Because the CNN physically learns the shape of the transit, I deployed **Explainable AI (XAI)** via a custom 1D Gradient-weighted Class Activation Mapping (Grad-CAM) algorithm. This acts as an "AI MRI", mapping exactly what the CNN is paying attention to onto the plotted light curve. Users can toggle between layers to see how the network identifies the broad transit shape versus the sharp ingress/egress edges.
 
-![XAI Dashboard Interface](/images/exoplanet-ml-dashboard.jpg)
+![XAI Dashboard Interface](/portfolio/images/exoplanet-ml-dashboard.jpg)
 
 For large-scale astrophysics work, the platform includes a **Batch Discovery Engine** allowing asynchronous bulk processing of dozens of stars simultaneously.
 

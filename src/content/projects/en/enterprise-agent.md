@@ -3,7 +3,7 @@ title: "Enterprise Data Agent & SSO Proxy Architecture"
 description: "A secure, privacy-first AI agent built within an Excel Web Add-in, connected to a legacy MOLAP cube via a custom Single Sign-On impersonation proxy."
 launchDate: 2026-07-29
 techStack: ["AI Agents", "Architecture", "SSO/Proxy", "SQL Server", "MDX/MOLAP"]
-coverImage: "/images/enterprise-agent-cover.jpg"
+coverImage: "/portfolio/images/enterprise-agent-cover.jpg"
 ---
 ## Bridging Legacy Systems with Modern Intelligence
 
@@ -17,7 +17,7 @@ The core issue was that the company's SQL Server database connected to a MOLAP c
 
 To solve this, I engineered an **impersonation proxy on the company server**. This proxy acts as a secure bridge, establishing a Single Sign-On (SSO) environment. By bypassing the legacy manual connection constraints securely, I enabled seamless, password-less access for the end users while maintaining strict enterprise access controls.
 
-![SSO Proxy Architecture Diagram](/images/enterprise-agent-architecture.jpg)
+![SSO Proxy Architecture Diagram](/portfolio/images/enterprise-agent-architecture.jpg)
 
 ### The AI Implementation: Privacy First
 
@@ -30,7 +30,7 @@ However, sending enterprise data to a third-party AI API was out of the question
 4. The AI translates the natural language into a highly optimized **MDX query**.
 5. The query is executed locally on the secure server, generating the pivot tables and graphs directly in Excel.
 
-![Excel Web Add-in AI Interface](/images/enterprise-agent-excel.jpg)
+![Excel Web Add-in AI Interface](/portfolio/images/enterprise-agent-excel.jpg)
 
 ### Why This Matters
 

@@ -4,7 +4,7 @@ description: "Hardware engineering and IoT telemetry for a Parrot FPV Disco dron
 launchDate: 2024-06-01
 techStack: ["Embedded Systems", "Hardware IoT", "Telemetry", "Drone Engineering"]
 liveUrl: "https://www.esiea.fr/infinite-flight-projet-etudiant-de-drone-de-surveillance-et-de-sauvetage/"
-coverImage: "/images/infinite-flight.jpg"
+coverImage: "/portfolio/images/infinite-flight.jpg"
 ---
 ## InfiniteFlight: Surveillance & Rescue
 

@@ -4,7 +4,7 @@ description: "Un modèle d'IA Explicable (XAI) utilisant les API de la NASA pour
 launchDate: 2026-07-26
 techStack: ["Python", "CNN", "Flask", "NASA MAST API", "Plotly", "Grad-CAM"]
 githubUrl: "https://github.com/K4yan0/exoplanet-detection-ml"
-coverImage: "/images/exoplanet-ml-cover.jpg"
+coverImage: "/portfolio/images/exoplanet-ml-cover.jpg"
 ---
 ## Automatisation de la Découverte Planétaire
 
@@ -34,7 +34,7 @@ Alors que les modèles traditionnels comme les Random Forests peinent à compren
 
 J'ai entraîné une architecture légère (16 ➝ 32 ➝ 64 filtres avec Dropout) pour éviter le surapprentissage. Le réseau a appris de lui-même la signature morphologique d'un transit (l'entrée abrupte, le fond plat, et la sortie), pulvérisant les plafonds précédents pour atteindre **90,37% de précision** avec un AUC de 0,924.
 
-![Performances du Modèle CNN](/images/exoplanet-ml-metrics.jpg)
+![Performances du Modèle CNN](/portfolio/images/exoplanet-ml-metrics.jpg)
 
 Pour protéger le modèle contre l'effet "Hans le Malin" (où des plafonds de données artificiels imitent des transits), j'ai implémenté un **Veto Heuristique**—un garde-fou d'ingénierie qui intercepte et rejette automatiquement les artéfacts mathématiques avec 0% de confiance avant qu'ils n'atteignent le réseau de neurones.
 
@@ -44,7 +44,7 @@ L'ensemble du pipeline d'inférence est encapsulé dans une Application Web Flas
 
 Parce que le CNN apprend physiquement la forme du transit, j'ai déployé une **IA Explicable (XAI)** via un algorithme personnalisé Grad-CAM 1D. Il agit comme une "IRM IA", cartographiant exactement ce à quoi le CNN prête attention sur la courbe de lumière. Les utilisateurs peuvent alterner entre les couches pour voir comment le réseau identifie la forme large du transit par rapport aux bords nets d'entrée et de sortie.
 
-![Tableau de Bord XAI](/images/exoplanet-ml-dashboard.jpg)
+![Tableau de Bord XAI](/portfolio/images/exoplanet-ml-dashboard.jpg)
 
 Pour les travaux astrophysiques à grande échelle, la plateforme inclut un **Moteur de Découverte en Lot** permettant le traitement asynchrone simultané de dizaines d'étoiles.
 

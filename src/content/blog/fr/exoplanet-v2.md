@@ -3,7 +3,7 @@ title: "Lancement du Projet Exoplanet Multimodal AI (V2)"
 description: "Début du développement de la nouvelle génération de détection d'exoplanètes via des architectures multimodales et validation HARP/ESO."
 pubDate: 2026-07-27
 tags: ["IA Explicable", "Astrophysique", "Open Source"]
-coverImage: "/images/hero.jpg"
+coverImage: "/portfolio/images/hero.jpg"
 ---
 Aujourd'hui, je lance officiellement le développement de **Exoplanet Multimodal AI (V2)**.
 
@@ -17,7 +17,7 @@ Bien que l'intégration de l'API TESS nous ait fourni des courbes de lumière de
 
 La V2 introduira une approche de validation croisée utilisant **les données de vitesse radiale HARP/ESO**. En fournissant à une architecture d'IA multimodale à la fois les données photométriques de transit et les données spectroscopiques de vitesse radiale, le modèle pourra confirmer de manière déterministe la masse et la nature du corps en orbite.
 
-![Architecture Exoplanet V2](/images/hero.jpg)
+![Architecture Exoplanet V2](/portfolio/images/hero.jpg)
 *(Note : Je mettrai à jour ce graphique avec les templates Canva finaux prochainement)*
 
 Vous pouvez suivre le développement en cours, consulter les diagrammes d'architecture et contribuer au code source directement sur GitHub :

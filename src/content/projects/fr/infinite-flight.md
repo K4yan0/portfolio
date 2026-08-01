@@ -4,7 +4,7 @@ description: "Ingénierie hardware et télémétrie IoT sur un drone Parrot FPV 
 launchDate: 2024-06-01
 techStack: ["Systèmes Embarqués", "Hardware IoT", "Télémétrie", "Ingénierie Drone"]
 liveUrl: "https://www.esiea.fr/infinite-flight-projet-etudiant-de-drone-de-surveillance-et-de-sauvetage/"
-coverImage: "/images/infinite-flight.jpg"
+coverImage: "/portfolio/images/infinite-flight.jpg"
 ---
 ## InfiniteFlight : Surveillance & Sauvetage
 

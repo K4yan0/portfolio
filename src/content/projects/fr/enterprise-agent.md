@@ -3,7 +3,7 @@ title: "Agent Data Entreprise & Architecture Proxy SSO"
 description: "Un agent IA sécurisé respectant la confidentialité des données, intégré dans un Web Add-in Excel et connecté à un cube MOLAP legacy via un proxy d'impersonnalisation SSO sur mesure."
 launchDate: 2026-07-29
 techStack: ["Agents IA", "Architecture", "SSO/Proxy", "SQL Server", "MDX/MOLAP"]
-coverImage: "/images/enterprise-agent-cover.jpg"
+coverImage: "/portfolio/images/enterprise-agent-cover.jpg"
 ---
 ## Connecter les Systèmes Legacy à l'Intelligence Moderne
 
@@ -17,7 +17,7 @@ Le problème central était que la base de données SQL Server de l'entreprise s
 
 Pour résoudre ce problème, j'ai conçu un **proxy d'impersonnalisation sur le serveur de l'entreprise**. Ce proxy agit comme un pont sécurisé, établissant un environnement Single Sign-On (SSO). En contournant les contraintes de connexion manuelle de manière sécurisée, j'ai permis un accès fluide et sans mot de passe pour les utilisateurs finaux, tout en maintenant des contrôles d'accès stricts.
 
-![Schéma d'Architecture Proxy SSO](/images/enterprise-agent-architecture.jpg)
+![Schéma d'Architecture Proxy SSO](/portfolio/images/enterprise-agent-architecture.jpg)
 
 ### L'Implémentation IA : La Confidentialité Avant Tout
 
@@ -30,7 +30,7 @@ Cependant, envoyer les données de l'entreprise à une API IA tierce était hors
 4. L'IA traduit le langage naturel en une **requête MDX** hautement optimisée.
 5. La requête est exécutée localement sur le serveur sécurisé, générant les tableaux croisés dynamiques et les graphiques directement dans Excel.
 
-![Interface IA Web Add-in Excel](/images/enterprise-agent-excel.jpg)
+![Interface IA Web Add-in Excel](/portfolio/images/enterprise-agent-excel.jpg)
 
 ### Pourquoi C'est Important
 

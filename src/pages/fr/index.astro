@@ -24,15 +24,15 @@ const featuredProjects = allProjects
           Étudiant ingénieur en dernière année, spécialisé en Systèmes Embarqués et Intelligence Artificielle. Actuellement en double diplôme à l'ESIEA et SKEMA Business School (MSc AIBT).
         </p>
         <div class="flex flex-wrap items-center gap-6 pt-4">
-          <Button variant="primary" href={`${import.meta.env.BASE_URL}fr/projects`}>Voir les Projets</Button>
-          <Button variant="secondary" href={`${import.meta.env.BASE_URL}fr/about`}>À propos de moi</Button>
+          <Button variant="primary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`}>Voir les Projets</Button>
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/about`}>À propos de moi</Button>
         </div>
       </div>
       
       <div class="lg:col-span-5 relative group hidden md:block">
           <div class="relative w-full aspect-square md:aspect-[4/5] bg-cohere-stone overflow-hidden shadow-2xl">
             <img 
-              src={`${import.meta.env.BASE_URL}images/hero.jpg`} 
+              src={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/images/hero.jpg`} 
               alt="Swan - Développeur" 
               class="w-full h-full object-cover grayscale opacity-90 transition-all duration-1000 hover:grayscale-0 hover:opacity-100 hover:scale-105"
             />
@@ -123,7 +123,7 @@ const featuredProjects = allProjects
         <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack">
           Projets Récents
         </h2>
-        <a href={`${import.meta.env.BASE_URL}fr/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
+        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
           Voir tous les projets &rarr;
         </a>
       </div>
@@ -135,7 +135,7 @@ const featuredProjects = allProjects
             description={project.data.description}
             tags={project.data.techStack.slice(0, 3)}
             imageUrl={project.data.coverImage}
-            url={`${import.meta.env.BASE_URL}fr/projects/${project.id.replace('fr/', '')}`}
+            url={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects/${project.id.replace('fr/', '')}`}
           />
         ))}
       </div>

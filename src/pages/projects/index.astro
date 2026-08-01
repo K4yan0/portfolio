@@ -23,7 +23,7 @@ projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf(
           description={project.data.description}
           tags={project.data.techStack}
           imageUrl={project.data.coverImage}
-          url={`/projects/${project.id.replace('en/', '')}`}
+          url={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/projects/${project.id.replace('en/', '')}`}
         />
       ))}
     </div>

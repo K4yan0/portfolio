@@ -2,7 +2,7 @@
 title: "Lancement du Projet Exoplanet Multimodal AI (V2)"
 description: "Début du développement de la nouvelle génération de détection d'exoplanètes via des architectures multimodales et validation HARP/ESO."
 pubDate: 2026-07-27
-tags: ["IA", "Astrophysique", "Open Source"]
+tags: ["IA Explicable", "Astrophysique", "Open Source"]
 coverImage: "/images/hero.jpg"
 ---
 Aujourd'hui, je lance officiellement le développement de **Exoplanet Multimodal AI (V2)**.

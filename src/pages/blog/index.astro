@@ -12,13 +12,22 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   <div class="max-w-4xl mx-auto space-y-16">
     <header class="border-b border-cohere-hairline pb-12">
       <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Research & Writing</h1>
-      <p class="font-body text-[20px] text-cohere-muted">Explorations in architecture, intelligence, and design constraints.</p>
+      <p class="font-body text-[20px] text-cohere-muted mb-10">Explorations in architecture, intelligence, and design constraints.</p>
+      
+      <div class="flex flex-wrap gap-4" id="blog-filters">
+        <button data-filter="all" class="filter-btn font-body text-[16px] md:text-[20px] border border-cohere-coral bg-cohere-coral text-white rounded-[30px] px-6 py-2 transition-colors">
+          All Research
+        </button>
+        <button data-filter="Explainable AI" class="filter-btn font-body text-[16px] md:text-[20px] border border-cohere-coral text-cohere-coral rounded-[30px] px-6 py-2 hover:bg-cohere-coral hover:text-white transition-colors bg-cohere-coral/5">
+          Explainable AI
+        </button>
+      </div>
     </header>
 
     <!-- Following DESIGN.md: Research pages use full-width lists with date and chip columns instead of decorative cards. -->
-    <div class="flex flex-col">
+    <div class="flex flex-col" id="blog-posts">
       {posts.map(post => (
-        <a href={`/blog/${post.id.replace('en/', '')}`} class="group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
+        <a href={`/blog/${post.id.replace('en/', '')}`} data-tags={post.data.tags.join(',')} class="post-item group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
           <div class="md:w-[180px] shrink-0 mb-4 md:mb-0">
             <time class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors">
               {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
@@ -41,4 +50,38 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       ))}
     </div>
   </div>
+
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.post-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons to outline style
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-cohere-coral', 'text-white');
+          b.classList.add('text-cohere-coral', 'bg-cohere-coral/5');
+        });
+        
+        // Set clicked button to filled style
+        btn.classList.remove('text-cohere-coral', 'bg-cohere-coral/5');
+        btn.classList.add('bg-cohere-coral', 'text-white');
+
+        // Filter posts
+        const filter = btn.getAttribute('data-filter');
+        posts.forEach(post => {
+          if (filter === 'all') {
+            post.style.display = 'flex';
+          } else {
+            const tags = post.getAttribute('data-tags') || '';
+            if (tags.includes(filter)) {
+              post.style.display = 'flex';
+            } else {
+              post.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

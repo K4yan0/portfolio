@@ -2,7 +2,7 @@
 title: "Announcing Exoplanet Multimodal AI (V2)"
 description: "Kicking off the next generation of exoplanet detection using multimodal architectures and HARP/ESO cross-validation."
 pubDate: 2026-07-27
-tags: ["AI", "Astrophysics", "Open Source"]
+tags: ["Explainable AI", "Astrophysics", "Open Source"]
 coverImage: "/images/hero.jpg"
 ---
 Today, I am officially starting development on **Exoplanet Multimodal AI (V2)**.

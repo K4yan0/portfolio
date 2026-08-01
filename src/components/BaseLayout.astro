@@ -9,13 +9,19 @@ interface Props {
 
 const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio." } = Astro.props;
 const lang = Astro.currentLocale || 'en';
-const base = lang === 'fr' ? '/fr' : '';
+const sysBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const langPrefix = lang === 'fr' ? '/fr' : '';
+const base = `${sysBase}${langPrefix}`;
 
 // Compute the path to switch language correctly
 const currentPath = Astro.url.pathname;
+const pathWithoutSysBase = currentPath.startsWith(sysBase) 
+  ? currentPath.slice(sysBase.length) || '/' 
+  : currentPath;
+  
 const switchLangPath = lang === 'en' 
-  ? `/fr${currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath}` 
-  : currentPath.replace(/^\/fr/, '') || '/';
+  ? `${sysBase}/fr${pathWithoutSysBase.endsWith('/') && pathWithoutSysBase.length > 1 ? pathWithoutSysBase.slice(0, -1) : pathWithoutSysBase}` 
+  : `${sysBase}${pathWithoutSysBase.replace(/^\/fr/, '') || '/'}`;
 ---
 
 <!DOCTYPE html>

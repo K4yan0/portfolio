@@ -24,8 +24,8 @@ const featuredProjects = allProjects
           I'm a final-year engineering student specializing in Embedded Systems and Artificial Intelligence. Currently pursuing a dual degree at ESIEA and SKEMA Business School (MSc AI for Business Transformation).
         </p>
         <div class="flex flex-wrap items-center gap-6 pt-4">
-          <Button variant="primary" href="/projects">Explore Projects</Button>
-          <Button variant="secondary" href="/about">More About Me</Button>
+          <Button variant="primary" href={`${import.meta.env.BASE_URL}projects`}>Explore Projects</Button>
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL}about`}>More About Me</Button>
         </div>
       </div>
       
@@ -123,7 +123,7 @@ const featuredProjects = allProjects
         <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack">
           Selected Works
         </h2>
-        <a href="/projects" class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
+        <a href={`${import.meta.env.BASE_URL}projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
           View All Projects &rarr;
         </a>
       </div>
@@ -135,7 +135,7 @@ const featuredProjects = allProjects
             description={project.data.description}
             tags={project.data.techStack.slice(0, 3)}
             imageUrl={project.data.coverImage}
-            url={`/projects/${project.id.replace('en/', '')}`}
+            url={`${import.meta.env.BASE_URL}projects/${project.id.replace('en/', '')}`}
           />
         ))}
       </div>

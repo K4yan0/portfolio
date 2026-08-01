@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
+import rehypeExternalLinks from 'rehype-external-links';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
   site: 'https://K4yan0.github.io',
 
   // If your repo is named 'portfolio', uncomment the line below:
-  //base: '/portfolio',
+  base: '/portfolio',
 
   i18n: {
     defaultLocale: 'en',
@@ -17,6 +18,12 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false
     }
+  },
+
+  markdown: {
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
+    ]
   },
 
   vite: {

@@ -10,18 +10,12 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags = [], imageUrl, url }) => {
-  let resolvedImageUrl = imageUrl;
-  if (resolvedImageUrl && resolvedImageUrl.startsWith('/')) {
-    const base = import.meta.env.BASE_URL;
-    resolvedImageUrl = base === '/' ? resolvedImageUrl : `${base}${resolvedImageUrl.replace(/^\//, '')}`;
-  }
-
   const content = (
     <div className="group h-full flex flex-col bg-white border border-cohere-hairline rounded-lg overflow-hidden transition-all duration-300 hover:border-cohere-ink">
-      {resolvedImageUrl && (
+      {imageUrl && (
         <div className="w-full h-72 bg-cohere-stone overflow-hidden border-b border-cohere-hairline">
           <img 
-            src={resolvedImageUrl} 
+            src={imageUrl} 
             alt={title} 
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />

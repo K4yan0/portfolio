@@ -34,7 +34,17 @@ export const Button: React.FC<ButtonProps> = ({
   const combinedStyles = `${baseStyles} ${variantStyles} ${className}`;
 
   if (href) {
-    return <a href={href} className={combinedStyles}>{children}</a>;
+    const isExternal = href.startsWith('http');
+    return (
+      <a 
+        href={href} 
+        className={combinedStyles}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    );
   }
   
   return (

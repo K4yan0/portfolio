@@ -18,8 +18,72 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={`${entry.data.title} | Recherche`} description={entry.data.description}>
-  <article class="max-w-3xl mx-auto py-12 md:py-20">
-    <header class="mb-16 space-y-8">
+  <!-- Use w-full to push the sidebar to the left edge -->
+  <div class="w-full max-w-[1600px] mx-auto px-6 lg:px-12 py-12 md:py-20 flex flex-col xl:flex-row justify-center gap-16 xl:gap-32 items-start relative">
+    
+    <!-- Cohere-style Sticky Sidebar (Initially hidden via opacity-0) -->
+    <aside id="blog-sidebar" class="hidden xl:block w-[240px] shrink-0 sticky top-32 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+      <div class="flex flex-col gap-10">
+        
+        <!-- Back to Blog -->
+        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/blog`} class="group flex items-center gap-2 text-cohere-slate hover:text-cohere-nearblack transition-colors font-body text-[15px]">
+          <svg class="w-4 h-4 transform transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Blog
+        </a>
+
+        <!-- Written By -->
+        <div class="space-y-4">
+          <h3 class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">Écrit Par</h3>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-cohere-nearblack flex items-center justify-center">
+              <span class="font-display text-white text-sm">K</span>
+            </div>
+            <span class="font-body text-cohere-nearblack font-medium text-[15px]">K4yan0</span>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="space-y-4">
+          <h3 class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">Catégories</h3>
+          <div class="flex flex-wrap gap-2">
+            {entry.data.tags.map((tag) => (
+              <Tag variant="blog" label={tag} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div class="space-y-4">
+          <h3 class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">Partager</h3>
+          <div class="flex gap-4">
+            <a href={`https://twitter.com/intent/tweet?url=${Astro.url}&text=${encodeURIComponent(entry.data.title)}`} target="_blank" rel="noopener noreferrer" class="text-cohere-slate hover:text-cohere-blue transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+            </a>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url}&title=${encodeURIComponent(entry.data.title)}`} target="_blank" rel="noopener noreferrer" class="text-cohere-slate hover:text-cohere-blue transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CTA Box -->
+        <div class="mt-4 p-6 bg-cohere-stone border border-cohere-hairline rounded-xl">
+          <h3 class="font-display text-[18px] text-cohere-nearblack tracking-tight leading-snug mb-4">
+            L'IA n'est pas un raccourci.<br/>C'est ainsi que les entreprises prennent de l'avance.
+          </h3>
+          <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/contact`} class="inline-flex items-center gap-2 text-cohere-blue font-body text-[14px] hover:underline underline-offset-4 transition-all">
+            Contactez-moi
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <article class="flex-1 min-w-0 max-w-3xl">
+    <header id="article-header" class="mb-16 space-y-8">
       {entry.data.coverImage && (
         <div class="w-full aspect-[21/9] rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
           <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
@@ -68,4 +132,30 @@ const { Content } = await render(entry);
       <Content />
     </div>
   </article>
+  </div>
+
+  <script>
+    // Intersection Observer to show sidebar only when header is out of view
+    // Use astro:page-load instead of DOMContentLoaded to support Astro View Transitions
+    document.addEventListener('astro:page-load', () => {
+      const header = document.getElementById('article-header');
+      const sidebar = document.getElementById('blog-sidebar');
+      
+      if (header && sidebar) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (!entry.isIntersecting) {
+              sidebar.classList.remove('opacity-0', 'pointer-events-none');
+              sidebar.classList.add('opacity-100');
+            } else {
+              sidebar.classList.add('opacity-0', 'pointer-events-none');
+              sidebar.classList.remove('opacity-100');
+            }
+          },
+          { threshold: 0 } // Triggers exactly when the header leaves/enters the viewport
+        );
+        observer.observe(header);
+      }
+    });
+  </script>
 </BaseLayout>

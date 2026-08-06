@@ -49,3 +49,5 @@ Because the CNN physically learns the shape of the transit, I deployed **Explain
 For large-scale astrophysics work, the platform includes a **Batch Discovery Engine** allowing asynchronous bulk processing of dozens of stars simultaneously.
 
 > **Next Phase:** Version 2 is currently in preparation. It will introduce cross-validation using HARP/ESO radial velocity data to further solidify detection confidence.
+
+> **Read More:** For a deep dive into the astrophysics, the data engineering pipeline, and the XAI ablation analysis, [read the full research paper here](/portfolio/blog/exoplanet-research).

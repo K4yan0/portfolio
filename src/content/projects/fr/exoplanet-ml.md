@@ -49,3 +49,5 @@ Parce que le CNN apprend physiquement la forme du transit, j'ai déployé une **
 Pour les travaux astrophysiques à grande échelle, la plateforme inclut un **Moteur de Découverte en Lot** permettant le traitement asynchrone simultané de dizaines d'étoiles.
 
 > **Prochaine Étape :** La version 2 est actuellement en préparation. Elle introduira une validation croisée utilisant les données de vitesse radiale HARP/ESO pour consolider davantage la confiance des détections.
+
+> **Pour en savoir plus :** Pour une plongée approfondie dans l'astrophysique, l'ingénierie des données et l'analyse d'ablation XAI, [lisez l'article de recherche complet ici](/portfolio/fr/blog/exoplanet-research).

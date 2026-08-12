@@ -85,8 +85,15 @@ const { Content } = await render(entry);
     <article class="flex-1 min-w-0 max-w-3xl">
     <header id="article-header" class="mb-16 space-y-8">
       {entry.data.coverImage && (
-        <div class="w-full aspect-[21/9] rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
-          <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
+        <div class="w-full">
+          <div class="w-full aspect-[21/9] rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
+            <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
+          </div>
+          {entry.data.coverCredit && (
+            <p class="mt-3 text-center text-[13px] text-cohere-slate font-body italic">
+              {entry.data.coverCredit}
+            </p>
+          )}
         </div>
       )}
       

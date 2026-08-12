@@ -52,34 +52,36 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   </div>
 
   <script>
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const posts = document.querySelectorAll('.post-item');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Reset all buttons to outline style
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-cohere-coral', 'text-white');
-          b.classList.add('text-cohere-coral', 'bg-cohere-coral/5');
-        });
-        
-        // Set clicked button to filled style
-        btn.classList.remove('text-cohere-coral', 'bg-cohere-coral/5');
-        btn.classList.add('bg-cohere-coral', 'text-white');
-
-        // Filter posts
-        const filter = btn.getAttribute('data-filter');
-        posts.forEach(post => {
-          if (filter === 'all') {
-            post.style.display = 'flex';
-          } else {
-            const tags = post.getAttribute('data-tags') || '';
-            if (tags.includes(filter)) {
+    document.addEventListener('astro:page-load', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const posts = document.querySelectorAll('.post-item');
+  
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Reset all buttons to outline style
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-cohere-coral', 'text-white');
+            b.classList.add('text-cohere-coral', 'bg-cohere-coral/5');
+          });
+          
+          // Set clicked button to filled style
+          btn.classList.remove('text-cohere-coral', 'bg-cohere-coral/5');
+          btn.classList.add('bg-cohere-coral', 'text-white');
+  
+          // Filter posts
+          const filter = btn.getAttribute('data-filter');
+          posts.forEach(post => {
+            if (filter === 'all') {
               post.style.display = 'flex';
             } else {
-              post.style.display = 'none';
+              const tags = post.getAttribute('data-tags') || '';
+              if (tags.includes(filter)) {
+                post.style.display = 'flex';
+              } else {
+                post.style.display = 'none';
+              }
             }
-          }
+          });
         });
       });
     });

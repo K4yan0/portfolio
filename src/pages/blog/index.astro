@@ -6,7 +6,11 @@ import { Tag } from '../../components/Tag';
 const allPosts = await getCollection('blog');
 const posts = allPosts.filter(p => p.id.startsWith('en/'));
 // Sort by date descending
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+posts.sort((a, b) => {
+  const dateA = a.data.pubDate ? a.data.pubDate.valueOf() : 0;
+  const dateB = b.data.pubDate ? b.data.pubDate.valueOf() : 0;
+  return dateB - dateA;
+});
 ---
 <BaseLayout title="Blog & Research | System." description="Latest articles and technical research.">
   <div class="max-w-4xl mx-auto space-y-16">
@@ -27,10 +31,10 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     <!-- Following DESIGN.md: Research pages use full-width lists with date and chip columns instead of decorative cards. -->
     <div class="flex flex-col" id="blog-posts">
       {posts.map(post => (
-        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/blog/${post.id.replace('en/', '')}`} data-tags={post.data.tags.join(',')} class="post-item group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
+        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/blog/${post.id.replace('en/', '')}`} data-tags={post.data.tags ? post.data.tags.join(',') : ''} class="post-item group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
           <div class="md:w-[180px] shrink-0 mb-4 md:mb-0">
             <time class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors">
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              {post.data.pubDate ? post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
             </time>
           </div>
           <div class="flex-grow flex flex-col items-start pr-8">
@@ -42,7 +46,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
             </p>
           </div>
           <div class="hidden md:flex flex-wrap gap-2 justify-end w-[180px] shrink-0">
-            {post.data.tags.slice(0, 2).map(tag => (
+            {post.data.tags && post.data.tags.slice(0, 2).map(tag => (
               <Tag variant="blog" label={tag} />
             ))}
           </div>

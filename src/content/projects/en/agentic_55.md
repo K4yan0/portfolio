@@ -3,7 +3,7 @@ title: "Quality-to-Media AI Agent (Award-Winning)"
 description: "An agentic AI system architecture and business case developed in partnership with fifty-five for Decathlon France. Designed to dynamically bridge product quality signals and Google Ads bidding, protecting €404k in annual margin."
 launchDate: 2026-10-16
 techStack: ["Agentic Architecture", "Google Cloud", "BigQuery", "LLM Orchestration", "Google Ads API", "A/B Testing", "EU AI Act Governance"]
-liveUrl: "https://fr.linkedin.com/posts/fifty-five_%F0%9D%97%97%F0%9D%97%AE%F0%9D%97%BB%F0%9D%98%80-%F0%9D%97%B9%F0%9D%97%B2-%F0%9D%97%B0%F0%9D%97%AE%F0%9D%97%B1%F0%9D%97%BF%F0%9D%97%B2-%F0%9D%97%B1%F0%9D%97%B2-%F0%9D%97%BB%F0%9D%97%BC%F0%9D%98%81%F0%9D%97%BF%F0%9D%97%B2-activity-7517857329392861184-UIVj
+liveUrl: "https://fr.linkedin.com/posts/fifty-five_%F0%9D%97%97%F0%9D%97%AE%F0%9D%97%BB%F0%9D%98%80-%F0%9D%97%B9%F0%9D%97%B2-%F0%9D%97%B0%F0%9D%97%AE%F0%9D%97%B1%F0%9D%97%BF%F0%9D%97%B2-%F0%9D%97%B1%F0%9D%97%B2-%F0%9D%97%BB%F0%9D%97%BC%F0%9D%98%81%F0%9D%97%BF%F0%9D%97%B2-activity-7517857329392861184-UIVj"
 coverImage: "/portfolio/images/q2m-cover.jpg"
 ---
 

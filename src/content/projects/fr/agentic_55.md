@@ -89,4 +89,4 @@ Le pilote constitue en lui-même une police d'assurance : si le backtest histori
 
 > **Résultat du Projet :** Décerné **1er Prix / Meilleur Projet** par le jury fifty-five et SKEMA pour son réalisme architectural, sa rigueur financière et sa gouvernance transparente des risques.
 
-> **En Savoir Plus :** [Télécharger le rapport complet (PDF)](/portfolio/docs/Q2M_2026_FiftyFive_Report.pdf)
+> **En Savoir Plus :** [Télécharger le rapport complet (PDF)](/portfolio/public/docs/Q2M_2026_FiftyFive_Report.pdf)

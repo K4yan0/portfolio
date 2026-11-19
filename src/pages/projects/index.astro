@@ -5,7 +5,6 @@ import { ProjectCard } from '../../components/ProjectCard';
 
 // Only fetch English projects
 const allProjects = await getCollection('projects');
-console.log("DEBUG: All project IDs:", allProjects.map(p => p.id));
 const projects = allProjects.filter(p => p.id.startsWith('en/') || p.id.startsWith('en\\'));
 projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf());
 ---

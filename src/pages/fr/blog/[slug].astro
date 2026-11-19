@@ -15,9 +15,11 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const wordCount = (entry.body || '').trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<BaseLayout title={`${entry.data.title} | Recherche`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} | Recherche`} description={entry.data.description} image={entry.data.coverImage}>
   <!-- Use w-full to push the sidebar to the left edge -->
   <div class="w-full max-w-[1600px] mx-auto px-6 lg:px-12 py-12 md:py-20 flex flex-col xl:flex-row justify-center gap-16 xl:gap-32 items-start relative">
     
@@ -102,6 +104,10 @@ const { Content } = await render(entry);
           <time class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">
             {entry.data.pubDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
+          <div class="w-1 h-1 bg-cohere-hairline rounded-full"></div>
+          <span class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase">
+            {readingTime} min de lecture
+          </span>
           <div class="w-1 h-1 bg-cohere-hairline rounded-full"></div>
           <div class="flex gap-2">
             {entry.data.tags.map((tag) => (

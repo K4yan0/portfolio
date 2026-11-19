@@ -21,10 +21,12 @@ const h2Headings = headings.filter((h) => h.depth === 2);
 const tocHeadings = h2Headings.length >= 3
   ? h2Headings
   : headings.filter((h) => h.depth === 2 || h.depth === 3);
+const wordCount = (entry.body || '').trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<BaseLayout title={`${entry.data.title} | Projet`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} | Projet`} description={entry.data.description} image={entry.data.coverImage}>
   <div class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row justify-start gap-12 lg:gap-16 xl:gap-20 items-start">
     
     <!-- Sidebar Projet Sticky (Sommaire dynamique + Retour + Aperçu) -->
@@ -73,6 +75,10 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.re
               <dd class="font-body text-cohere-nearblack mt-0.5">{entry.data.launchDate.getFullYear()}</dd>
             </div>
             <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Lecture</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">{readingTime} min de lecture</dd>
+            </div>
+            <div>
               <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Stack clé</dt>
               <dd class="font-body text-cohere-nearblack mt-0.5">{entry.data.techStack.slice(0, 4).join(' · ')}</dd>
             </div>
@@ -118,7 +124,7 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.re
           
           <div class="flex flex-col gap-3.5 shrink-0 min-w-[200px]">
             <div class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase mb-1">
-              Lancé en {entry.data.launchDate.getFullYear()}
+              Lancé en {entry.data.launchDate.getFullYear()} · {readingTime} min
             </div>
             {entry.data.researchPaperUrl && (
               <Button variant="primary" href={entry.data.researchPaperUrl}>Lire l'Article de Recherche &rarr;</Button>

@@ -6,13 +6,15 @@ interface Props {
   title?: string;
   description?: string;
   fullBleed?: boolean;
+  image?: string;
 }
 
-const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio.", fullBleed = false } = Astro.props;
+const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio.", fullBleed = false, image } = Astro.props;
 const lang = Astro.currentLocale || 'en';
 const sysBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const langPrefix = lang === 'fr' ? '/fr' : '';
 const base = `${sysBase}${langPrefix}`;
+const ogImageUrl = new URL(image || `${sysBase}/images/hero.jpg`, Astro.site || Astro.url);
 
 // Compute the path to switch language correctly
 const currentPath = Astro.url.pathname;
@@ -42,14 +44,14 @@ const switchLangPath = lang === 'en'
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(`${sysBase}/images/hero.jpg`, Astro.url)} />
+    <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(`${sysBase}/images/hero.jpg`, Astro.url)} />
+    <meta property="twitter:image" content={ogImageUrl} />
     
     <ClientRouter />
     

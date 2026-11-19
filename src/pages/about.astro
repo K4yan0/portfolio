@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import { Tag } from '../components/Tag';
+import { CertificationCard } from '../components/CertificationCard';
 
 const skillCategories = [
   {
@@ -17,7 +18,22 @@ const skillCategories = [
   },
   {
     name: "Embedded Systems & Core",
-    skills: ["Python", "C/C++", "IoT Telemetry (MAVLink, 4G)", "Sensor Interfaces (UART, I2C, SPI)", "Hardware Integration", "English (TOEIC 950)"]
+    skills: ["Python", "C/C++", "IoT Telemetry (MAVLink, 4G)", "Sensor Interfaces (UART, I2C, SPI)", "Hardware Integration", "English (Professional / Fluent)"]
+  }
+];
+
+// Active Certifications (configured with 1 card for now, ready to scale)
+const certifications = [
+  {
+    title: "Data Engineering & Cloud Architecture",
+    issuer: "Cloud & Data Provider",
+    issueDate: "2025",
+    expiryDate: "Active",
+    credentialId: "CERT-DE-01",
+    verificationUrl: "https://www.credly.com",
+    badgeUrl: "", // Add image path when ready (e.g. "/portfolio/images/badge.png")
+    description: "Validates technical proficiency in designing, orchestrating, and scaling production data pipelines and cloud workloads under enterprise constraints.",
+    tags: ["Data Engineering", "Cloud", "Pipelines"]
   }
 ];
 ---
@@ -36,7 +52,7 @@ const skillCategories = [
     </section>
 
     <!-- Manifesto / Deep Dive -->
-    <section class="space-y-12">
+    <section class="space-y-16">
       <div class="space-y-6">
         <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
         <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
@@ -55,9 +71,10 @@ const skillCategories = [
         </div>
       </div>
       
-      <div class="space-y-10 pt-8">
+      <!-- The Arsenal / Stack -->
+      <div class="space-y-10 pt-12 border-t border-cohere-hairline">
         <div>
-          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Stack</h2>
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Arsenal</h2>
           <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
             My technical stack bridges the gap between hardware execution and data intelligence.
           </p>
@@ -73,6 +90,33 @@ const skillCategories = [
                 ))}
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Accreditations & Certifications -->
+      <div class="space-y-10 pt-12 border-t border-cohere-hairline">
+        <div>
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Accreditations & Certifications</h2>
+          <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+            Formal technical certifications validating core competencies across data, cloud, and machine learning.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-6">
+          {certifications.map(cert => (
+            <CertificationCard 
+              client:load
+              title={cert.title}
+              issuer={cert.issuer}
+              issueDate={cert.issueDate}
+              expiryDate={cert.expiryDate}
+              credentialId={cert.credentialId}
+              verificationUrl={cert.verificationUrl}
+              badgeUrl={cert.badgeUrl}
+              description={cert.description}
+              tags={cert.tags}
+            />
           ))}
         </div>
       </div>

@@ -39,88 +39,144 @@ const certifications = [
 ---
 
 <BaseLayout title="About | Developer Portfolio" description="About the engineer behind the systems.">
-  <div class="max-w-3xl mx-auto space-y-24">
+  <div class="w-full flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 items-start">
     
-    <!-- Hero Text -->
-    <section class="space-y-8 border-b border-cohere-hairline pb-16">
-      <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-        Bridging signals <br/> and intelligence.
-      </h1>
-      <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
-        Dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware, production data pipelines, and artificial intelligence.
-      </p>
-    </section>
-
-    <!-- Manifesto / Deep Dive -->
-    <section class="space-y-16">
+    <!-- Cohere-style Sticky In-Page Navigation Sidebar -->
+    <aside class="hidden lg:block w-[240px] shrink-0 sticky top-[30vh] self-start">
       <div class="space-y-6">
-        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
-        <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
-          <p>
-            Coming from a rigorous foundation in advanced mathematics and physics, I developed a structural approach to problem-solving early on. This led to an intensive academic exchange at Seoul National University of Science and Technology in South Korea, where I focused on Machine Learning and Quantum Computing.
-          </p>
-          <p>
-            When choosing my engineering specialization, I selected <strong>Embedded Systems and AI</strong>. I am convinced that the most critical engineering challenges lie at the interface between physical signals and algorithmic intelligence: Edge AI, autonomous telemetry, and resource-constrained computing.
-          </p>
-          <p>
-            During my 5-month internship at <strong>NG Metrics</strong> as an AI & Data Engineering Intern, I was tasked with connecting modern LLMs to legacy enterprise systems without compromising confidentiality. I engineered a secure Single Sign-On (SSO) impersonation proxy and developed an in-Excel AI Agent translating natural language into optimized MDX queries over a legacy SQL Server MOLAP cube—guaranteeing zero data leakage through strict schema-data separation.
-          </p>
-          <p>
-            Currently completing my double degree (MSc AI for Business Transformation), I am actively seeking a <strong>6-month end-of-study technical internship starting in May 2027</strong> in <strong>AI Engineering, Data Engineering, or Applied AI / Embedded Systems</strong> (open to France and international opportunities).
-          </p>
-        </div>
+        <span class="font-mono text-[12px] uppercase tracking-widest text-cohere-muted block">
+          On this page
+        </span>
+        <nav class="flex flex-col space-y-4 border-l border-cohere-hairline pl-5 font-mono text-[15px]">
+          <a href="#journey" class="toc-link text-cohere-slate hover:text-cohere-nearblack transition-colors" data-target="journey">
+            The Journey
+          </a>
+          <a href="#stack" class="toc-link text-cohere-slate hover:text-cohere-nearblack transition-colors" data-target="stack">
+            The Stack
+          </a>
+          <a href="#certifications" class="toc-link text-cohere-slate hover:text-cohere-nearblack transition-colors" data-target="certifications">
+            Certifications
+          </a>
+        </nav>
       </div>
+    </aside>
+
+    <!-- Main Content Column -->
+    <div class="max-w-3xl w-full space-y-24">
       
-      <!-- The Arsenal / Stack -->
-      <div class="space-y-10 pt-12 border-t border-cohere-hairline">
-        <div>
-          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Arsenal</h2>
-          <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
-            My technical stack bridges the gap between hardware execution and data intelligence.
-          </p>
-        </div>
+      <!-- Hero Text -->
+      <section class="space-y-8 border-b border-cohere-hairline pb-16">
+        <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
+          Bridging signals <br/> and intelligence.
+        </h1>
+        <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
+          Dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware, production data pipelines, and artificial intelligence.
+        </p>
+      </section>
+
+      <!-- Content Sections -->
+      <div class="space-y-16">
+        <!-- The Journey -->
+        <section id="journey" class="space-y-6 scroll-mt-28">
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
+          <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
+            <p>
+              Coming from a rigorous foundation in advanced mathematics and physics, I developed a structural approach to problem-solving early on. This led to an intensive academic exchange at Seoul National University of Science and Technology in South Korea, where I focused on Machine Learning and Quantum Computing.
+            </p>
+            <p>
+              When choosing my engineering specialization, I selected <strong>Embedded Systems and AI</strong>. I am convinced that the most critical engineering challenges lie at the interface between physical signals and algorithmic intelligence: Edge AI, autonomous telemetry, and resource-constrained computing.
+            </p>
+            <p>
+              During my 5-month internship at <strong>NG Metrics</strong> as an AI & Data Engineering Intern, I was tasked with connecting modern LLMs to legacy enterprise systems without compromising confidentiality. I engineered a secure Single Sign-On (SSO) impersonation proxy and developed an in-Excel AI Agent translating natural language into optimized MDX queries over a legacy SQL Server MOLAP cube—guaranteeing zero data leakage through strict schema-data separation.
+            </p>
+            <p>
+              Currently completing my double degree (MSc AI for Business Transformation), I am actively seeking a <strong>6-month end-of-study technical internship starting in May 2027</strong> in <strong>AI Engineering, Data Engineering, or Applied AI / Embedded Systems</strong> (open to France and international opportunities).
+            </p>
+          </div>
+        </section>
         
-        <div class="space-y-8">
-          {skillCategories.map(category => (
-            <div class="space-y-3">
-              <h3 class="font-mono text-[13px] uppercase tracking-wider text-cohere-muted">{category.name}</h3>
-              <div class="flex flex-wrap gap-2.5">
-                {category.skills.map(tech => (
-                  <Tag variant="tech" label={tech} />
-                ))}
+        <!-- The Stack -->
+        <section id="stack" class="space-y-10 pt-12 border-t border-cohere-hairline scroll-mt-28">
+          <div>
+            <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Stack</h2>
+            <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+              My technical stack bridges the gap between hardware execution and data intelligence.
+            </p>
+          </div>
+          
+          <div class="space-y-8">
+            {skillCategories.map(category => (
+              <div class="space-y-3">
+                <h3 class="font-mono text-[13px] uppercase tracking-wider text-cohere-muted">{category.name}</h3>
+                <div class="flex flex-wrap gap-2.5">
+                  {category.skills.map(tech => (
+                    <Tag variant="tech" label={tech} />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications" class="space-y-10 pt-12 border-t border-cohere-hairline scroll-mt-28">
+          <div>
+            <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Certifications</h2>
+            <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+              Formal technical certifications validating core competencies across data, cloud, and machine learning.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 gap-6">
+            {certifications.map(cert => (
+              <CertificationCard 
+                client:load
+                title={cert.title}
+                issuer={cert.issuer}
+                issueDate={cert.issueDate}
+                expiryDate={cert.expiryDate}
+                credentialId={cert.credentialId}
+                verificationUrl={cert.verificationUrl}
+                badgeUrl={cert.badgeUrl}
+                description={cert.description}
+                tags={cert.tags}
+              />
+            ))}
+          </div>
+        </section>
       </div>
 
-      <!-- Accreditations & Certifications -->
-      <div class="space-y-10 pt-12 border-t border-cohere-hairline">
-        <div>
-          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Accreditations & Certifications</h2>
-          <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
-            Formal technical certifications validating core competencies across data, cloud, and machine learning.
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 gap-6">
-          {certifications.map(cert => (
-            <CertificationCard 
-              client:load
-              title={cert.title}
-              issuer={cert.issuer}
-              issueDate={cert.issueDate}
-              expiryDate={cert.expiryDate}
-              credentialId={cert.credentialId}
-              verificationUrl={cert.verificationUrl}
-              badgeUrl={cert.badgeUrl}
-              description={cert.description}
-              tags={cert.tags}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    </div>
 
   </div>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const tocLinks = document.querySelectorAll('.toc-link');
+
+      if (!sections.length || !tocLinks.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            tocLinks.forEach((link) => {
+              if (link.getAttribute('data-target') === id) {
+                link.classList.remove('text-cohere-slate');
+                link.classList.add('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+              } else {
+                link.classList.remove('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+                link.classList.add('text-cohere-slate');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: '-15% 0px -70% 0px'
+      });
+
+      sections.forEach((section) => observer.observe(section));
+    });
+  </script>
 </BaseLayout>

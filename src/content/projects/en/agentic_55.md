@@ -89,4 +89,4 @@ Crucially, the pilot itself acts as an insurance policy: if the Week 3 historica
 
 > **Project Outcome:** Awarded **1st Place / Best Project** by the fifty-five and SKEMA jury for architectural realism, financial rigor, and transparent risk governance.
 
-> **Read More:** [Download the report (PDF)](/portfolio/public/docs/Q2M_2026_FiftyFive_Report.pdf)
+> **Read More:** [Download the report (PDF)](/portfolio/docs/Q2M_2026_FiftyFive_Report.pdf)

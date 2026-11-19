@@ -2,9 +2,23 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import { Tag } from '../../components/Tag';
 
-const techStack = [
-  "Python", "C/C++", "PowerBI", "Machine Learning", "Data Engineering", "Deep Learning",
-  "Scikit-learn", "Keras", "Systèmes Embarqués", "Docker", "Kubernetes", "Terraform", "GCP", "Anglais (TOEIC 950)"
+const skillCategories = [
+  {
+    name: "IA & Machine Learning",
+    skills: ["Machine Learning", "Deep Learning", "Keras / PyTorch", "Scikit-learn", "IA Explicable (Grad-CAM, SHAP)", "Calibration de Modèles (ECE)", "Orchestration & Prompting LLM"]
+  },
+  {
+    name: "Ingénierie des Données & Analytics",
+    skills: ["Pipelines de Données", "SQL Server", "MOLAP / MDX", "PowerBI", "Traitement de Séries Temporelles (lightkurve, BLS)", "Modélisation de Données"]
+  },
+  {
+    name: "Cloud, DevOps & Systèmes",
+    skills: ["GCP (Google Cloud)", "Docker", "Kubernetes", "Terraform", "Git & Pipelines CI/CD"]
+  },
+  {
+    name: "Systèmes Embarqués & Socle",
+    skills: ["Python", "C/C++", "Télémétrie IoT (MAVLink, 4G)", "Interfaces Capteurs (UART, I2C, SPI)", "Intégration Matérielle", "Anglais (TOEIC 950)"]
+  }
 ];
 ---
 
@@ -14,10 +28,10 @@ const techStack = [
     <!-- Hero Text -->
     <section class="space-y-8 border-b border-cohere-hairline pb-16">
       <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-        Guidé par <br/> la rigueur.
+        Faire dialoguer signaux <br/> et intelligence.
       </h1>
       <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
-        Étudiant ingénieur en double diplôme (ESIEA / SKEMA), je construis des ponts entre le hardware bas niveau et l'intelligence artificielle haut niveau.
+        Étudiant ingénieur en double diplôme (ESIEA / SKEMA). Je bâtis des passerelles entre le matériel embarqué bas niveau, les pipelines de données de production et l'intelligence artificielle.
       </p>
     </section>
 
@@ -27,26 +41,38 @@ const techStack = [
         <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Le Parcours</h2>
         <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
           <p>
-            Issu d'une formation exigeante (option maths expertes), j'ai très tôt développé une approche structurelle de la résolution de problèmes. Durant mon cursus supérieur, je suis parti un semestre en échange à Seoul National University of Science and Technology (Corée du Sud) pour y étudier le Machine Learning et l'Informatique Quantique.
+            Issu d'une formation exigeante axée sur les mathématiques approfondies et la physique, j'ai développé très tôt une approche rigoureuse et structurée de la résolution de problèmes. Ce parcours m'a mené à un échange académique intensif à Seoul National University of Science and Technology en Corée du Sud, dédié au Machine Learning et à l'Informatique Quantique.
           </p>
           <p>
-            Au moment de choisir ma spécialisation, j'ai longuement hésité entre l'IA et les Systèmes Embarqués. J'ai finalement choisi les Systèmes Embarqués, convaincu que ces deux domaines seront intimement liés dans les prochaines années (Edge AI).
+            Au moment de choisir ma spécialisation, j'ai opté pour la convergence des <strong>Systèmes Embarqués et de l'IA</strong>. J'ai la conviction que les défis d'ingénierie les plus stimulants se situent à la frontière entre le signal physique et l'intelligence algorithmique : Edge AI, télémétrie autonome et calcul sous contraintes matérielles.
           </p>
           <p>
-            Mes expériences professionnelles—allant de l'observation dans le service public hospitalier (HEGP) à l'ingénierie technique chez NG Metrics—m'ont fait réaliser à quel point les entreprises ont un besoin crucial d'outils informatiques robustes. Actuellement en double diplôme (MSc AIBT), je serai à la recherche de mon stage de fin d'études pour le second semestre 2027, en France ou à l'international. Je certifie d'ailleurs de mon aisance professionnelle en anglais avec un TOEIC à 950.
+            Lors de mon stage de 5 mois chez <strong>NG Metrics</strong> en tant qu'ingénieur stagiaire IA & Data, j'ai répondu à un défi architectural concret : connecter des modèles de langage modernes à des architectures d'entreprise existantes sans compromettre la sécurité des données. J'ai conçu un proxy d'impersonnalisation SSO sécurisé et développé un Agent IA (complément web Excel) traduisant le langage naturel en requêtes MDX optimisées sur un cube MOLAP SQL Server—garantissant une confidentialité totale par séparation du schéma et des données.
+          </p>
+          <p>
+            Actuellement en double diplôme (MSc AI for Business Transformation), je suis à la recherche de mon <strong>stage de fin d'études technique de 6 mois à partir de mai 2027</strong> en <strong>Ingénierie IA, Data Engineering ou IA Appliquée / Systèmes Embarqués</strong> (en France ou à l'international).
           </p>
         </div>
       </div>
       
-      <div class="space-y-6 pt-8">
-        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">L'Arsenal</h2>
-        <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
-          Ma stack technique fait le lien entre l'exécution matérielle et l'intelligence des données.
-        </p>
+      <div class="space-y-10 pt-8">
+        <div>
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">La Stack</h2>
+          <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+            Ma stack technique fait le lien entre l'exécution matérielle et l'intelligence des données.
+          </p>
+        </div>
         
-        <div class="flex flex-wrap gap-3 pt-4">
-          {techStack.map(tech => (
-            <Tag variant="tech" label={tech} />
+        <div class="space-y-8">
+          {skillCategories.map(category => (
+            <div class="space-y-3">
+              <h3 class="font-mono text-[13px] uppercase tracking-wider text-cohere-muted">{category.name}</h3>
+              <div class="flex flex-wrap gap-2.5">
+                {category.skills.map(tech => (
+                  <Tag variant="tech" label={tech} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

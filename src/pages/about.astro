@@ -2,9 +2,23 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import { Tag } from '../components/Tag';
 
-const techStack = [
-  "Python", "C/C++", "PowerBI", "Machine Learning", "Data Engineering", "Deep Learning",
-  "Scikit-learn", "Keras", "Embedded Systems", "Docker", "Kubernetes", "Terraform", "GCP", "English (TOEIC 950)"
+const skillCategories = [
+  {
+    name: "AI & Machine Learning",
+    skills: ["Machine Learning", "Deep Learning", "Keras / PyTorch", "Scikit-learn", "Explainable AI (Grad-CAM, SHAP)", "Model Calibration (ECE)", "LLM Orchestration & Prompting"]
+  },
+  {
+    name: "Data & Analytics Engineering",
+    skills: ["Data Pipelines", "SQL Server", "MOLAP / MDX", "PowerBI", "Time-Series Processing (lightkurve, BLS)", "Data Modeling"]
+  },
+  {
+    name: "Cloud, DevOps & Systems",
+    skills: ["GCP (Google Cloud)", "Docker", "Kubernetes", "Terraform", "Git & CI/CD Pipelines"]
+  },
+  {
+    name: "Embedded Systems & Core",
+    skills: ["Python", "C/C++", "IoT Telemetry (MAVLink, 4G)", "Sensor Interfaces (UART, I2C, SPI)", "Hardware Integration", "English (TOEIC 950)"]
+  }
 ];
 ---
 
@@ -14,10 +28,10 @@ const techStack = [
     <!-- Hero Text -->
     <section class="space-y-8 border-b border-cohere-hairline pb-16">
       <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-        Driven by <br/> complexity.
+        Bridging signals <br/> and intelligence.
       </h1>
       <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
-        I am a dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware and high-level artificial intelligence.
+        Dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware, production data pipelines, and artificial intelligence.
       </p>
     </section>
 
@@ -27,26 +41,38 @@ const techStack = [
         <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
         <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
           <p>
-            Coming from a rigorous background in advanced mathematics and physics, I developed a structural approach to problem-solving early on. I later pursued an academic exchange at Seoul National University of Science and Technology in South Korea, where I immersed myself in Machine Learning and Quantum Computing.
+            Coming from a rigorous foundation in advanced mathematics and physics, I developed a structural approach to problem-solving early on. This led to an intensive academic exchange at Seoul National University of Science and Technology in South Korea, where I focused on Machine Learning and Quantum Computing.
           </p>
           <p>
-            When choosing my engineering specialization, I was torn between AI and Embedded Systems. I ultimately chose Embedded Systems, driven by the conviction that these two fields will become intimately intertwined in the coming years. Edge AI and intelligent hardware are the future.
+            When choosing my engineering specialization, I selected <strong>Embedded Systems and AI</strong>. I am convinced that the most critical engineering challenges lie at the interface between physical signals and algorithmic intelligence: Edge AI, autonomous telemetry, and resource-constrained computing.
           </p>
           <p>
-            Beyond academics, my professional experiences—ranging from public sector observations in hospitals to technical data engineering at NG Metrics—have shown me the immense need for robust IT solutions across all industries. I am currently completing my double degree (MSc AIBT) and actively looking for my final technical internship for the second semester of 2027 (open to international opportunities).
+            During my 5-month internship at <strong>NG Metrics</strong> as an AI & Data Engineering Intern, I was tasked with connecting modern LLMs to legacy enterprise systems without compromising confidentiality. I engineered a secure Single Sign-On (SSO) impersonation proxy and developed an in-Excel AI Agent translating natural language into optimized MDX queries over a legacy SQL Server MOLAP cube—guaranteeing zero data leakage through strict schema-data separation.
+          </p>
+          <p>
+            Currently completing my double degree (MSc AI for Business Transformation), I am actively seeking a <strong>6-month end-of-study technical internship starting in May 2027</strong> in <strong>AI Engineering, Data Engineering, or Applied AI / Embedded Systems</strong> (open to France and international opportunities).
           </p>
         </div>
       </div>
       
-      <div class="space-y-6 pt-8">
-        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Arsenal</h2>
-        <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
-          My technical stack bridges the gap between hardware execution and data intelligence.
-        </p>
+      <div class="space-y-10 pt-8">
+        <div>
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Stack</h2>
+          <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+            My technical stack bridges the gap between hardware execution and data intelligence.
+          </p>
+        </div>
         
-        <div class="flex flex-wrap gap-3 pt-4">
-          {techStack.map(tech => (
-            <Tag variant="tech" label={tech} />
+        <div class="space-y-8">
+          {skillCategories.map(category => (
+            <div class="space-y-3">
+              <h3 class="font-mono text-[13px] uppercase tracking-wider text-cohere-muted">{category.name}</h3>
+              <div class="flex flex-wrap gap-2.5">
+                {category.skills.map(tech => (
+                  <Tag variant="tech" label={tech} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

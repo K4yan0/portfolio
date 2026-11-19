@@ -11,31 +11,56 @@ posts.sort((a, b) => {
   const dateB = b.data.pubDate ? b.data.pubDate.valueOf() : 0;
   return dateB - dateA;
 });
+
+const uniqueTags = Array.from(
+  new Set(posts.flatMap(post => post.data.tags || []))
+);
+
+const getReadingTime = (body?: string) => {
+  const words = (body || '').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
 ---
 <BaseLayout title="Blog & Research | Swan." description="Latest articles and technical research.">
   <div class="max-w-4xl mx-auto space-y-16">
     <header class="border-b border-cohere-hairline pb-12">
-      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Research & Writing</h1>
+      <span class="font-mono text-[12px] uppercase tracking-[0.2em] text-cohere-muted block mb-4">
+        {String(posts.length).padStart(2, '0')} Publications
+      </span>
+      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Research &amp; Writing</h1>
       <p class="font-body text-[20px] text-cohere-muted mb-10">Explorations in architecture, intelligence, and design constraints.</p>
       
-      <div class="flex flex-wrap gap-4" id="blog-filters">
-        <button data-filter="all" class="filter-btn font-body text-[16px] md:text-[20px] border border-cohere-coral bg-cohere-coral text-white rounded-[30px] px-6 py-2 transition-colors">
+      <div class="flex flex-wrap gap-3" id="blog-filters">
+        <button
+          type="button"
+          data-filter="all"
+          class="filter-btn font-body text-[15px] md:text-[16px] border border-cohere-coral bg-cohere-coral text-white rounded-sm px-4 py-2 transition-colors cursor-pointer"
+        >
           All Research
         </button>
-        <button data-filter="Explainable AI" class="filter-btn font-body text-[16px] md:text-[20px] border border-cohere-coral text-cohere-coral rounded-[30px] px-6 py-2 hover:bg-cohere-coral hover:text-white transition-colors bg-cohere-coral/5">
-          Explainable AI
-        </button>
+        {uniqueTags.map(tag => (
+          <button
+            type="button"
+            data-filter={tag}
+            class="filter-btn font-body text-[15px] md:text-[16px] border border-cohere-coral text-cohere-coral rounded-sm px-4 py-2 hover:bg-cohere-coral hover:text-white transition-colors bg-cohere-coral/5 cursor-pointer"
+          >
+            {tag}
+          </button>
+        ))}
       </div>
     </header>
 
     <!-- Following DESIGN.md: Research pages use full-width lists with date and chip columns instead of decorative cards. -->
     <div class="flex flex-col" id="blog-posts">
       {posts.map(post => (
-        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/blog/${post.id.replace('en/', '')}`} data-tags={post.data.tags ? post.data.tags.join(',') : ''} class="post-item group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
-          <div class="md:w-[180px] shrink-0 mb-4 md:mb-0">
-            <time class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors">
+        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/blog/${post.id.replace('en/', '')}`} data-tags={post.data.tags ? post.data.tags.join('|') : ''} class="post-item group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-cohere-hairline no-underline transition-colors">
+          <div class="md:w-[180px] shrink-0 mb-4 md:mb-0 space-y-1">
+            <time class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors block">
               {post.data.pubDate ? post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
             </time>
+            <span class="font-mono text-[11px] text-cohere-slate uppercase tracking-wider block">
+              {getReadingTime(post.body)} min read
+            </span>
           </div>
           <div class="flex-grow flex flex-col items-start pr-8">
             <h2 class="font-display text-[24px] tracking-tight text-cohere-nearblack mb-2 group-hover:text-cohere-blue transition-colors">
@@ -73,17 +98,14 @@ posts.sort((a, b) => {
           btn.classList.add('bg-cohere-coral', 'text-white');
   
           // Filter posts
-          const filter = btn.getAttribute('data-filter');
+          const filter = btn.getAttribute('data-filter') || 'all';
           posts.forEach(post => {
+            const el = post as HTMLElement;
             if (filter === 'all') {
-              post.style.display = 'flex';
+              el.style.display = 'flex';
             } else {
-              const tags = post.getAttribute('data-tags') || '';
-              if (tags.includes(filter)) {
-                post.style.display = 'flex';
-              } else {
-                post.style.display = 'none';
-              }
+              const tags = (el.getAttribute('data-tags') || '').split('|');
+              el.style.display = tags.includes(filter) ? 'flex' : 'none';
             }
           });
         });

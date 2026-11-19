@@ -16,67 +16,178 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const h2Headings = headings.filter((h) => h.depth === 2);
+const tocHeadings = h2Headings.length >= 3
+  ? h2Headings
+  : headings.filter((h) => h.depth === 2 || h.depth === 3);
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title={`${entry.data.title} | Projet`} description={entry.data.description}>
-  <article class="max-w-4xl mx-auto py-12 md:py-20">
-    <header class="mb-20 space-y-12">
-      {entry.data.coverImage && (
-        <div class="w-full aspect-video rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
-          <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
-        </div>
-      )}
-      
-      <div class="flex flex-col md:flex-row md:items-start justify-between gap-12 border-b border-cohere-hairline pb-12">
-        <div class="space-y-6 max-w-2xl">
-          <h1 class="font-display text-[48px] md:text-[72px] leading-[1.0] tracking-[-1.44px] text-cohere-nearblack">
-            {entry.data.title}
-          </h1>
-          <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-muted">
-            {entry.data.description}
-          </p>
-          
-          <div class="flex flex-wrap gap-2 pt-4">
-            {entry.data.techStack.map((tech) => (
-              <Tag variant="tech" label={tech} />
-            ))}
+  <div class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row justify-start gap-12 lg:gap-16 xl:gap-20 items-start">
+    
+    <!-- Sidebar Projet Sticky (Sommaire dynamique + Retour + Aperçu) -->
+    <aside class="hidden lg:block w-[240px] shrink-0 sticky top-28 self-start">
+      <div class="space-y-10">
+        <!-- Retour aux Projets -->
+        <a href={`${base}/fr/projects`} class="group inline-flex items-center gap-2 text-cohere-slate hover:text-cohere-nearblack transition-colors font-body text-[14px] no-underline">
+          <svg class="w-4 h-4 transform transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Tous les projets
+        </a>
+
+        <!-- Sommaire dynamique -->
+        {tocHeadings.length >= 2 && (
+          <div class="space-y-5">
+            <span class="font-mono text-[12px] uppercase tracking-widest text-cohere-muted block">
+              Sommaire
+            </span>
+            <nav class="flex flex-col space-y-3.5 border-l border-cohere-hairline pl-5 font-mono text-[13px] leading-snug">
+              {tocHeadings.map((heading, idx) => (
+                <a
+                  href={`#${heading.slug}`}
+                  data-target={heading.slug}
+                  class={`project-toc-link transition-colors hover:text-cohere-nearblack ${
+                    idx === 0
+                      ? 'text-cohere-nearblack font-medium border-l-2 border-cohere-nearblack -ml-[21px] pl-[19px]'
+                      : 'text-cohere-slate'
+                  }`}
+                >
+                  {heading.text}
+                </a>
+              ))}
+            </nav>
           </div>
-        </div>
-        
-        <div class="flex flex-col gap-4 shrink-0 min-w-[200px]">
-          <div class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase mb-2">
-            Lancé en {entry.data.launchDate.getFullYear()}
-          </div>
-          {entry.data.researchPaperUrl && (
-            <Button variant="primary" href={entry.data.researchPaperUrl}>Lire l'Article de Recherche &rarr;</Button>
-          )}
-          {entry.data.liveUrl && (
-            <Button variant={entry.data.researchPaperUrl ? "secondary" : "primary"} href={entry.data.liveUrl}>Voir le Site</Button>
-          )}
-          {entry.data.githubUrl && (
-            <Button variant="outline" href={entry.data.githubUrl}>Code Source</Button>
-          )}
+        )}
+
+        <!-- Aperçu rapide -->
+        <div class="pt-8 border-t border-cohere-hairline space-y-4">
+          <span class="font-mono text-[12px] uppercase tracking-widest text-cohere-muted block">
+            Aperçu
+          </span>
+          <dl class="space-y-3 text-[13px]">
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Année</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">{entry.data.launchDate.getFullYear()}</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Stack clé</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">{entry.data.techStack.slice(0, 4).join(' · ')}</dd>
+            </div>
+          </dl>
         </div>
       </div>
-    </header>
+    </aside>
 
-    <div class="max-w-3xl mx-auto prose prose-lg 
-      prose-headings:font-display prose-headings:text-cohere-nearblack prose-headings:tracking-tight
-      prose-h1:text-[48px] prose-h1:tracking-[-0.48px] prose-h1:leading-[1.2]
-      prose-h2:text-[32px] prose-h2:tracking-[-0.32px] prose-h2:leading-[1.2]
-      prose-h3:text-[24px] prose-h3:leading-[1.3]
-      prose-p:font-body prose-p:text-cohere-ink prose-p:text-[18px] prose-p:leading-[1.6]
-      prose-a:text-cohere-blue prose-a:underline prose-a:underline-offset-4 prose-a:decoration-cohere-hairline hover:prose-a:decoration-cohere-blue transition-colors
-      prose-code:font-mono prose-code:text-[14px] prose-code:bg-cohere-stone prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:border prose-code:border-cohere-hairline before:content-none after:content-none
-      prose-pre:border prose-pre:border-cohere-hairline prose-pre:rounded-lg prose-pre:bg-cohere-nearblack
-      prose-strong:text-cohere-nearblack prose-strong:font-medium
-      prose-hr:border-cohere-hairline
-      prose-blockquote:border-l-cohere-hairline prose-blockquote:border-l-[1px] prose-blockquote:text-cohere-slate prose-blockquote:font-normal prose-blockquote:not-italic
-      prose-ul:font-body prose-ul:text-cohere-ink prose-ol:font-body prose-ol:text-cohere-ink
-      prose-li:my-1
-    ">
-      <Content />
-    </div>
-  </article>
+    <!-- Contenu Principal du Projet -->
+    <article class="flex-1 min-w-0 max-w-3xl w-full">
+      <!-- Lien Retour Mobile -->
+      <div class="lg:hidden mb-8">
+        <a href={`${base}/fr/projects`} class="group inline-flex items-center gap-2 text-cohere-slate hover:text-cohere-nearblack transition-colors font-body text-[14px] no-underline">
+          <svg class="w-4 h-4 transform transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Tous les projets
+        </a>
+      </div>
+
+      <header class="mb-16 space-y-10">
+        {entry.data.coverImage && (
+          <div class="w-full aspect-video rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
+            <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
+          </div>
+        )}
+        
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-cohere-hairline pb-12">
+          <div class="space-y-6 max-w-2xl">
+            <h1 class="font-display text-[44px] md:text-[60px] leading-[1.02] tracking-[-1.2px] text-cohere-nearblack">
+              {entry.data.title}
+            </h1>
+            <p class="font-body text-[18px] md:text-[20px] leading-[1.55] text-cohere-muted">
+              {entry.data.description}
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              {entry.data.techStack.map((tech) => (
+                <Tag variant="tech" label={tech} />
+              ))}
+            </div>
+          </div>
+          
+          <div class="flex flex-col gap-3.5 shrink-0 min-w-[200px]">
+            <div class="font-mono text-[12px] text-cohere-muted tracking-wider uppercase mb-1">
+              Lancé en {entry.data.launchDate.getFullYear()}
+            </div>
+            {entry.data.researchPaperUrl && (
+              <Button variant="primary" href={entry.data.researchPaperUrl}>Lire l'Article de Recherche &rarr;</Button>
+            )}
+            {entry.data.liveUrl && (
+              <Button variant={entry.data.researchPaperUrl ? "secondary" : "primary"} href={entry.data.liveUrl}>Voir le Site</Button>
+            )}
+            {entry.data.githubUrl && (
+              <Button variant="outline" href={entry.data.githubUrl}>Code Source</Button>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-display prose-headings:text-cohere-nearblack prose-headings:tracking-tight prose-headings:scroll-mt-28
+        prose-h1:text-[48px] prose-h1:tracking-[-0.48px] prose-h1:leading-[1.2]
+        prose-h2:text-[32px] prose-h2:tracking-[-0.32px] prose-h2:leading-[1.2]
+        prose-h3:text-[24px] prose-h3:leading-[1.3]
+        prose-p:font-body prose-p:text-cohere-ink prose-p:text-[18px] prose-p:leading-[1.6]
+        prose-a:text-cohere-blue prose-a:underline prose-a:underline-offset-4 prose-a:decoration-cohere-hairline hover:prose-a:decoration-cohere-blue transition-colors
+        prose-code:font-mono prose-code:text-[14px] prose-code:bg-cohere-stone prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:border prose-code:border-cohere-hairline before:content-none after:content-none
+        prose-pre:border prose-pre:border-cohere-hairline prose-pre:rounded-lg prose-pre:bg-cohere-nearblack
+        prose-strong:text-cohere-nearblack prose-strong:font-medium
+        prose-hr:border-cohere-hairline
+        prose-blockquote:border-l-cohere-hairline prose-blockquote:border-l-[1px] prose-blockquote:text-cohere-slate prose-blockquote:font-normal prose-blockquote:not-italic
+        prose-ul:font-body prose-ul:text-cohere-ink prose-ol:font-body prose-ol:text-cohere-ink
+        prose-li:my-1
+      ">
+        <Content />
+      </div>
+    </article>
+  </div>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const tocLinks = document.querySelectorAll('.project-toc-link');
+      if (!tocLinks.length) return;
+
+      const targets = Array.from(tocLinks)
+        .map((link) => document.getElementById(link.getAttribute('data-target') || ''))
+        .filter((el): el is HTMLElement => Boolean(el));
+
+      if (!targets.length) return;
+
+      const setActive = (id: string) => {
+        tocLinks.forEach((link) => {
+          if (link.getAttribute('data-target') === id) {
+            link.classList.remove('text-cohere-slate');
+            link.classList.add('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+          } else {
+            link.classList.remove('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+            link.classList.add('text-cohere-slate');
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.target.id) {
+              setActive(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-15% 0px -70% 0px' }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+    });
+  </script>
 </BaseLayout>

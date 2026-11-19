@@ -32,7 +32,7 @@ export default {
       fontFamily: {
         display: ['CohereText', 'Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui'],
         body: ['"Unica77 Cohere Web"', 'Inter', 'Arial', 'ui-sans-serif', 'system-ui'],
-        mono: ['CohereMono', 'Arial', 'ui-sans-serif', 'system-ui']
+        mono: ['CohereMono', '"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
       },
       borderRadius: {
         'xs': '4px',

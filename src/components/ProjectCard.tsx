@@ -5,11 +5,21 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags?: string[];
+  extraTags?: number;
+  year?: number;
   imageUrl?: string;
   url?: string;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags = [], imageUrl, url }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  title,
+  description,
+  tags = [],
+  extraTags = 0,
+  year,
+  imageUrl,
+  url,
+}) => {
   const content = (
     <div className="group h-full flex flex-col bg-white border border-cohere-hairline rounded-lg overflow-hidden transition-all duration-300 hover:border-cohere-ink">
       {imageUrl && (
@@ -22,18 +32,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
         </div>
       )}
       <div className="p-8 flex flex-col flex-grow">
+        {year && (
+          <span className="font-mono text-[11px] uppercase tracking-wider text-cohere-muted mb-3 block">
+            {year}
+          </span>
+        )}
         <h3 className="font-display text-[24px] md:text-[32px] leading-[1.2] tracking-[-0.32px] text-cohere-nearblack mb-4 group-hover:text-cohere-blue transition-colors">
           {title}
         </h3>
-        <p className="font-body text-[16px] leading-[1.5] text-cohere-ink mb-12 flex-grow opacity-90">
+        <p className="font-body text-[16px] leading-[1.5] text-cohere-ink mb-10 flex-grow opacity-90">
           {description}
         </p>
         
         {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-cohere-borderlight">
+          <div className="flex flex-wrap items-center gap-2 mt-auto pt-6 border-t border-cohere-borderlight">
             {tags.map((tag) => (
               <Tag key={tag} label={tag} variant="tech" />
             ))}
+            {extraTags > 0 && (
+              <span className="font-mono text-[11px] text-cohere-muted px-1.5">
+                +{extraTags}
+              </span>
+            )}
           </div>
         )}
       </div>

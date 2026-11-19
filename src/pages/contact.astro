@@ -2,14 +2,14 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import { Button } from '../components/Button';
 ---
-<BaseLayout title="Contact | System." description="Get in touch.">
+<BaseLayout title="Contact | Swan." description="Get in touch.">
   <!-- Following Cohere's contact-form-card pattern on a dark background -->
-  <div class="max-w-6xl mx-auto rounded-[22px] overflow-hidden border border-cohere-hairline flex flex-col md:flex-row shadow-sm">
+  <div class="max-w-6xl mx-auto rounded-[22px] overflow-hidden border border-cohere-hairline flex flex-col md:flex-row">
     <div class="w-full md:w-1/2 p-12 md:p-20 flex flex-col justify-between bg-cohere-nearblack text-white">
       <div>
         <h1 class="font-display text-[48px] md:text-[56px] leading-[1.1] tracking-[-0.48px] mb-6">Initialize <br/> Connection.</h1>
         <p class="font-body text-[18px] text-cohere-muted max-w-md leading-[1.6]">
-          I am currently accepting inquiries for senior architecture roles and high-impact engineering opportunities.
+          I am currently seeking a 6-month end-of-study technical internship starting from May 2027 in AI & Data Engineering, and open to high-impact technical opportunities.
         </p>
       </div>
       <div class="mt-20 flex flex-col space-y-8">
@@ -37,7 +37,7 @@ import { Button } from '../components/Button';
         </div>
         
         <div class="space-y-2">
-          <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Transmission</label>
+          <label class="font-mono text-[12px] uppercase tracking-wider text-cohere-slate">Message</label>
           <textarea rows="4" name="message" required class="w-full font-body text-[16px] px-4 py-3 border border-cohere-hairline rounded-sm focus:outline-none focus:border-cohere-focusviolet focus:ring-1 focus:ring-cohere-focusviolet transition-all bg-transparent resize-none" placeholder="How can we collaborate?"></textarea>
         </div>
         
@@ -47,11 +47,15 @@ import { Button } from '../components/Button';
   </div>
 
   <script>
-    const form = document.querySelector('form');
-    if (form) {
+    document.addEventListener('astro:page-load', () => {
+      const form = document.querySelector('form');
+      if (!form || form.dataset.bound) return;
+      form.dataset.bound = 'true';
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('button');
+        if (!btn) return;
         const originalText = btn.innerText;
         btn.innerText = 'Sending...';
         btn.disabled = true;
@@ -82,6 +86,6 @@ import { Button } from '../components/Button';
           btn.disabled = false;
         }
       });
-    }
+    });
   </script>
 </BaseLayout>

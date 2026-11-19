@@ -1,56 +1,217 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import { Tag } from '../components/Tag';
+import { CertificationCard } from '../components/CertificationCard';
 
-const techStack = [
-  "Python", "C/C++", "PowerBI", "Machine Learning", "Data Engineering", "Deep Learning",
-  "Scikit-learn", "Keras", "Embedded Systems", "Docker", "Kubernetes", "Terraform", "GCP", "English (TOEIC 950)"
+const skillCategories = [
+  {
+    name: "AI & Machine Learning",
+    skills: ["Machine Learning", "Deep Learning", "Keras / PyTorch", "Scikit-learn", "Explainable AI (Grad-CAM, SHAP)", "Model Calibration (ECE)", "LLM Orchestration & Prompting"]
+  },
+  {
+    name: "Data & Analytics Engineering",
+    skills: ["Data Pipelines", "SQL Server", "MOLAP / MDX", "PowerBI", "Time-Series Processing (lightkurve, BLS)", "Data Modeling"]
+  },
+  {
+    name: "Cloud, DevOps & Systems",
+    skills: ["GCP (Google Cloud)", "Docker", "Kubernetes", "Terraform", "Git & CI/CD Pipelines"]
+  },
+  {
+    name: "Embedded Systems & Core",
+    skills: ["Python", "C/C++", "IoT Telemetry (MAVLink, 4G)", "Sensor Interfaces (UART, I2C, SPI)", "Hardware Integration"]
+  },
+  {
+    name: "Non-Technical & Languages",
+    skills: ["Agile / Scrum", "French (Native)", "English (Professional / Fluent)"]
+  }
+];
+
+// Active Certifications (configured with 1 card for now, ready to scale)
+const certifications = [
+  {
+    title: "Data Engineering & Cloud Architecture",
+    issuer: "Cloud & Data Provider",
+    issueDate: "2025",
+    expiryDate: "Active",
+    credentialId: "CERT-DE-01",
+    verificationUrl: "https://www.credly.com",
+    badgeUrl: "", // Add image path when ready (e.g. "/portfolio/images/badge.png")
+    description: "Validates technical proficiency in designing, orchestrating, and scaling production data pipelines and cloud workloads under enterprise constraints.",
+    tags: ["Data Engineering", "Cloud", "Pipelines"]
+  }
 ];
 ---
 
-<BaseLayout title="About | Developer Portfolio" description="About the engineer behind the systems.">
-  <div class="max-w-3xl mx-auto space-y-24">
+<BaseLayout title="About | Swan." description="About the engineer behind the systems.">
+  <div class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row justify-start gap-12 lg:gap-16 xl:gap-20 items-start">
     
-    <!-- Hero Text -->
-    <section class="space-y-8 border-b border-cohere-hairline pb-16">
-      <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-        Driven by <br/> complexity.
-      </h1>
-      <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
-        I am a dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware and high-level artificial intelligence.
-      </p>
-    </section>
+    <!-- Cohere-style Sticky In-Page Navigation Sidebar -->
+    <aside class="hidden lg:block w-[240px] shrink-0 sticky top-28 self-start">
+      <div class="space-y-10">
+        <div class="space-y-5">
+          <span class="font-mono text-[12px] uppercase tracking-widest text-cohere-muted block">
+            On this page
+          </span>
+          <nav class="flex flex-col space-y-4 border-l border-cohere-hairline pl-5 font-mono text-[14px]">
+            <a href="#journey" class="toc-link text-cohere-nearblack font-medium border-l-2 border-cohere-nearblack -ml-[21px] pl-[19px] hover:text-cohere-nearblack transition-colors" data-target="journey">
+              The Journey
+            </a>
+            <a href="#stack" class="toc-link text-cohere-slate hover:text-cohere-nearblack transition-colors" data-target="stack">
+              The Stack
+            </a>
+            <a href="#certifications" class="toc-link text-cohere-slate hover:text-cohere-nearblack transition-colors" data-target="certifications">
+              Certifications
+            </a>
+          </nav>
+        </div>
 
-    <!-- Manifesto / Deep Dive -->
-    <section class="space-y-12">
-      <div class="space-y-6">
-        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
-        <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
-          <p>
-            Coming from a rigorous background in advanced mathematics and physics, I developed a structural approach to problem-solving early on. I later pursued an academic exchange at Seoul National University of Science and Technology in South Korea, where I immersed myself in Machine Learning and Quantum Computing.
-          </p>
-          <p>
-            When choosing my engineering specialization, I was torn between AI and Embedded Systems. I ultimately chose Embedded Systems, driven by the conviction that these two fields will become intimately intertwined in the coming years. Edge AI and intelligent hardware are the future.
-          </p>
-          <p>
-            Beyond academics, my professional experiences—ranging from public sector observations in hospitals to technical data engineering at NG Metrics—have shown me the immense need for robust IT solutions across all industries. I am currently completing my double degree (MSc AIBT) and actively looking for my final technical internship for the second semester of 2027 (open to international opportunities).
-          </p>
+        <!-- Quick Facts -->
+        <div class="pt-8 border-t border-cohere-hairline space-y-4">
+          <span class="font-mono text-[12px] uppercase tracking-widest text-cohere-muted block">
+            Quick Facts
+          </span>
+          <dl class="space-y-3.5 text-[13px]">
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Education</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">ESIEA &amp; SKEMA (MSc AIBT)</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Target Role</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">AI, Data &amp; Embedded Engineering</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Availability</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">May 2027 • 6-Mo Internship</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Location</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">France &amp; International</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-wider text-cohere-muted">Languages</dt>
+              <dd class="font-body text-cohere-nearblack mt-0.5">French (Native), English (Fluent)</dd>
+            </div>
+          </dl>
         </div>
       </div>
+    </aside>
+
+    <!-- Main Content Column -->
+    <div class="max-w-3xl w-full space-y-24">
       
-      <div class="space-y-6 pt-8">
-        <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Arsenal</h2>
-        <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
-          My technical stack bridges the gap between hardware execution and data intelligence.
+      <!-- Hero Text -->
+      <section class="space-y-8 border-b border-cohere-hairline pb-16">
+        <h1 class="font-display text-[60px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
+          Bridging signals <br/> and intelligence.
+        </h1>
+        <p class="font-body text-[20px] md:text-[24px] leading-[1.5] text-cohere-ink opacity-90 max-w-2xl">
+          Dual-degree engineering student at ESIEA and SKEMA Business School. I build bridges between low-level embedded hardware, production data pipelines, and artificial intelligence.
         </p>
+      </section>
+
+      <!-- Content Sections -->
+      <div class="space-y-16">
+        <!-- The Journey -->
+        <section id="journey" class="space-y-6 scroll-mt-28">
+          <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Journey</h2>
+          <div class="font-body text-[18px] leading-[1.6] text-cohere-ink opacity-90 space-y-6">
+            <p>
+              Coming from a rigorous foundation in advanced mathematics and physics, I developed a structural approach to problem-solving early on. This led to an intensive academic exchange at Seoul National University of Science and Technology in South Korea, where I focused on Machine Learning and Quantum Computing.
+            </p>
+            <p>
+              When choosing my engineering specialization, I selected <strong>Embedded Systems and AI</strong>. I am convinced that the most critical engineering challenges lie at the interface between physical signals and algorithmic intelligence: Edge AI, autonomous telemetry, and resource-constrained computing.
+            </p>
+            <p>
+              During my 5-month internship at <strong>NG Metrics</strong> as an AI & Data Engineering Intern, I was tasked with connecting modern LLMs to legacy enterprise systems without compromising confidentiality. I engineered a secure Single Sign-On (SSO) impersonation proxy and developed an in-Excel AI Agent translating natural language into optimized MDX queries over a legacy SQL Server MOLAP cube—guaranteeing zero data leakage through strict schema-data separation.
+            </p>
+            <p>
+              Currently completing my double degree (MSc AI for Business Transformation), I am actively seeking a <strong>6-month end-of-study technical internship starting in May 2027</strong> in <strong>AI Engineering, Data Engineering, or Applied AI / Embedded Systems</strong> (open to France and international opportunities).
+            </p>
+          </div>
+        </section>
         
-        <div class="flex flex-wrap gap-3 pt-4">
-          {techStack.map(tech => (
-            <Tag variant="tech" label={tech} />
-          ))}
-        </div>
+        <!-- The Stack -->
+        <section id="stack" class="space-y-10 pt-12 border-t border-cohere-hairline scroll-mt-28">
+          <div>
+            <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">The Stack</h2>
+            <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+              My technical stack bridges the gap between hardware execution and data intelligence.
+            </p>
+          </div>
+          
+          <div class="space-y-8">
+            {skillCategories.map(category => (
+              <div class="space-y-3">
+                <h3 class="font-mono text-[13px] uppercase tracking-wider text-cohere-muted">{category.name}</h3>
+                <div class="flex flex-wrap gap-2.5">
+                  {category.skills.map(tech => (
+                    <Tag variant="tech" label={tech} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications" class="space-y-10 pt-12 border-t border-cohere-hairline scroll-mt-28">
+          <div>
+            <h2 class="font-display text-[32px] tracking-[-0.32px] text-cohere-nearblack">Certifications</h2>
+            <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90 mt-2">
+              Formal technical certifications validating core competencies across data, cloud, and machine learning.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 gap-6">
+            {certifications.map(cert => (
+              <CertificationCard 
+                client:load
+                title={cert.title}
+                issuer={cert.issuer}
+                issueDate={cert.issueDate}
+                expiryDate={cert.expiryDate}
+                credentialId={cert.credentialId}
+                verificationUrl={cert.verificationUrl}
+                badgeUrl={cert.badgeUrl}
+                description={cert.description}
+                tags={cert.tags}
+              />
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
+
+    </div>
 
   </div>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const tocLinks = document.querySelectorAll('.toc-link');
+
+      if (!sections.length || !tocLinks.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            tocLinks.forEach((link) => {
+              if (link.getAttribute('data-target') === id) {
+                link.classList.remove('text-cohere-slate');
+                link.classList.add('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+              } else {
+                link.classList.remove('text-cohere-nearblack', 'font-medium', 'border-l-2', 'border-cohere-nearblack', '-ml-[21px]', 'pl-[19px]');
+                link.classList.add('text-cohere-slate');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: '-15% 0px -70% 0px'
+      });
+
+      sections.forEach((section) => observer.observe(section));
+    });
+  </script>
 </BaseLayout>

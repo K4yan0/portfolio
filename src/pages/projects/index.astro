@@ -2,30 +2,265 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import { ProjectCard } from '../../components/ProjectCard';
+import { Tag } from '../../components/Tag';
 
-// Only fetch English projects
 const allProjects = await getCollection('projects');
-console.log("DEBUG: All project IDs:", allProjects.map(p => p.id));
 const projects = allProjects.filter(p => p.id.startsWith('en/') || p.id.startsWith('en\\'));
 projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf());
----
-<BaseLayout title="Projects | System." description="A showcase of engineered systems.">
-  <div class="space-y-16">
-    <header class="border-b border-cohere-hairline pb-12 max-w-4xl">
-      <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Engineered Systems</h1>
-      <p class="font-body text-[20px] text-cohere-muted">A collection of autonomous architectures, frameworks, and strict UIs.</p>
-    </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-      {projects.map(project => (
-        <ProjectCard 
-          title={project.data.title}
-          description={project.data.description}
-          tags={project.data.techStack}
-          imageUrl={project.data.coverImage}
-          url={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/projects/${project.id.replace('en/', '')}`}
-        />
-      ))}
-    </div>
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Derive clean domain categories per project for filtering
+const getCategories = (id: string, techStack: string[]): string[] => {
+  const slug = id.replace(/^en[\\/]/, '');
+  if (slug.includes('exoplanet')) return ['AI & ML'];
+  if (slug.includes('agentic_55')) return ['Agents & Data', 'AI & ML'];
+  if (slug.includes('enterprise-agent')) return ['Agents & Data'];
+  if (slug.includes('infinite-flight') || slug.includes('undrive')) return ['Embedded & Cloud'];
+  if (slug.includes('asteroid')) return ['AI & ML'];
+
+  const joined = techStack.join(' ').toLowerCase();
+  const cats: string[] = [];
+  if (joined.includes('cnn') || joined.includes('forest') || joined.includes('ml') || joined.includes('grad-cam')) cats.push('AI & ML');
+  if (joined.includes('agent') || joined.includes('sql') || joined.includes('bigquery') || joined.includes('llm')) cats.push('Agents & Data');
+  if (joined.includes('embedded') || joined.includes('kubernetes') || joined.includes('gcp') || joined.includes('iot')) cats.push('Embedded & Cloud');
+  return cats.length ? cats : ['AI & ML'];
+};
+
+// Tier 1: Flagship spotlight (exoplanet-ml)
+const flagshipProject = projects.find(p => p.id.includes('exoplanet-ml')) || projects.find(p => Boolean(p.data.coverImage));
+// Tier 2: Remaining visual showcase cards (with coverImage)
+const visualProjects = projects.filter(p => p !== flagshipProject && Boolean(p.data.coverImage));
+// Tier 3: Compact archive list (projects without coverImage)
+const archiveProjects = projects.filter(p => p !== flagshipProject && !p.data.coverImage);
+
+const filterCategories = ['AI & ML', 'Agents & Data', 'Embedded & Cloud'];
+---
+
+<BaseLayout title="Projects | Swan." description="A showcase of engineered systems." fullBleed={true}>
+  <div>
+    <!-- Band 1: White Editorial Header + Category Filters -->
+    <section class="w-full bg-cohere-canvas">
+      <div class="max-w-7xl mx-auto px-6 pt-16 pb-12 md:px-12 md:pt-24 md:pb-16">
+        <div class="max-w-4xl space-y-5">
+          <span class="font-mono text-[12px] uppercase tracking-[0.2em] text-cohere-muted block">
+            {String(projects.length).padStart(2, '0')} Engineered Systems
+          </span>
+          <h1 class="font-display text-[48px] md:text-[64px] leading-[1.02] tracking-[-1.28px] text-cohere-nearblack">
+            Engineered Systems
+          </h1>
+          <p class="font-body text-[18px] md:text-[20px] leading-[1.6] text-cohere-muted max-w-2xl">
+            A collection of ML architectures, enterprise AI agents, data pipelines, and embedded systems.
+          </p>
+        </div>
+
+        <!-- Cohere Pill-Outline Category Filters -->
+        <div class="flex flex-wrap items-center gap-3 mt-10 pt-8 border-t border-cohere-hairline" id="project-filters">
+          <button
+            type="button"
+            data-filter="all"
+            class="project-filter-btn font-body text-[14px] font-medium border border-cohere-nearblack bg-cohere-nearblack text-white rounded-[30px] px-5 py-2 transition-colors cursor-pointer"
+          >
+            All ({projects.length})
+          </button>
+          {filterCategories.map(cat => (
+            <button
+              type="button"
+              data-filter={cat}
+              class="project-filter-btn font-body text-[14px] font-medium border border-cohere-hairline bg-transparent text-cohere-ink hover:border-cohere-nearblack rounded-[30px] px-5 py-2 transition-colors cursor-pointer"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Band 2: Full-Bleed Soft Stone Showcase (Flagship Spotlight + Visual Grid) -->
+    <section id="projects-showcase-band" class="w-full bg-cohere-stone border-t border-cohere-hairline/80">
+      <div class="max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24 space-y-12">
+
+        <!-- Flagship Spotlight Card -->
+        {flagshipProject && (
+          <div
+            class="project-item"
+            data-categories={getCategories(flagshipProject.id, flagshipProject.data.techStack).join(',')}
+          >
+            <a
+              href={`${base}/projects/${flagshipProject.id.replace(/^en[\\/]/, '')}`}
+              class="group grid grid-cols-1 lg:grid-cols-12 bg-white border border-cohere-hairline hover:border-cohere-ink rounded-[22px] overflow-hidden transition-colors duration-300 no-underline"
+            >
+              {flagshipProject.data.coverImage && (
+                <div class="lg:col-span-7 bg-cohere-stone overflow-hidden border-b lg:border-b-0 lg:border-r border-cohere-hairline min-h-[260px] lg:min-h-[400px]">
+                  <img
+                    src={flagshipProject.data.coverImage}
+                    alt={flagshipProject.data.title}
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+              )}
+              <div class="lg:col-span-5 p-8 md:p-10 flex flex-col justify-between">
+                <div class="space-y-5">
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-cohere-coral flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-cohere-coral"></span>
+                      Flagship Case Study
+                    </span>
+                    <span class="font-mono text-[12px] text-cohere-muted">
+                      {flagshipProject.data.launchDate.getFullYear()}
+                    </span>
+                  </div>
+
+                  <h2 class="font-display text-[30px] md:text-[36px] leading-[1.12] tracking-[-0.48px] text-cohere-nearblack group-hover:text-cohere-blue transition-colors">
+                    {flagshipProject.data.title}
+                  </h2>
+
+                  <p class="font-body text-[16px] leading-[1.6] text-cohere-ink opacity-90">
+                    {flagshipProject.data.description}
+                  </p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-cohere-borderlight space-y-5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    {flagshipProject.data.techStack.slice(0, 4).map((tech) => (
+                      <Tag label={tech} variant="tech" />
+                    ))}
+                    {flagshipProject.data.techStack.length > 4 && (
+                      <span class="font-mono text-[11px] text-cohere-muted px-1.5">
+                        +{flagshipProject.data.techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
+                  <span class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-cohere-nearblack group-hover:text-cohere-blue transition-colors">
+                    Explore Case Study
+                    <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        )}
+
+        <!-- 2-Column Visual Project Grid -->
+        {visualProjects.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {visualProjects.map(project => (
+              <div
+                class="project-item h-full"
+                data-categories={getCategories(project.id, project.data.techStack).join(',')}
+              >
+                <ProjectCard
+                  title={project.data.title}
+                  description={project.data.description}
+                  year={project.data.launchDate.getFullYear()}
+                  tags={project.data.techStack.slice(0, 4)}
+                  extraTags={Math.max(0, project.data.techStack.length - 4)}
+                  imageUrl={project.data.coverImage}
+                  url={`${base}/projects/${project.id.replace(/^en[\\/]/, '')}`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Band 3: White Cohere Research-Table Archive (Projects without Cover Images) -->
+    {archiveProjects.length > 0 && (
+      <section id="projects-archive-band" class="w-full bg-cohere-canvas border-t border-cohere-hairline">
+        <div class="max-w-7xl mx-auto px-6 py-20 md:px-12 md:py-24">
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 pb-8 border-b border-cohere-hairline">
+            <div>
+              <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-cohere-muted block mb-2">
+                Archive
+              </span>
+              <h2 class="font-display text-[32px] md:text-[36px] leading-[1.15] tracking-[-0.36px] text-cohere-nearblack">
+                Additional Systems
+              </h2>
+            </div>
+            <p class="font-body text-[15px] text-cohere-slate max-w-md">
+              Earlier engineering builds, cloud pipelines, and data science prototypes.
+            </p>
+          </div>
+
+          <div class="flex flex-col">
+            {archiveProjects.map(project => (
+              <a
+                href={`${base}/projects/${project.id.replace(/^en[\\/]/, '')}`}
+                data-categories={getCategories(project.id, project.data.techStack).join(',')}
+                class="project-item group flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-8 py-8 border-b border-cohere-hairline no-underline transition-colors"
+              >
+                <div class="md:w-[90px] shrink-0">
+                  <span class="font-mono text-[13px] text-cohere-muted uppercase tracking-wider group-hover:text-cohere-blue transition-colors">
+                    {project.data.launchDate.getFullYear()}
+                  </span>
+                </div>
+
+                <div class="flex-grow min-w-0">
+                  <h3 class="font-display text-[22px] md:text-[24px] tracking-tight text-cohere-nearblack group-hover:text-cohere-blue transition-colors mb-1.5">
+                    {project.data.title}
+                  </h3>
+                  <p class="font-body text-[15px] text-cohere-slate line-clamp-2 max-w-2xl">
+                    {project.data.description}
+                  </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 md:justify-end md:w-[280px] shrink-0">
+                  {project.data.techStack.slice(0, 3).map(tech => (
+                    <Tag variant="tech" label={tech} />
+                  ))}
+                </div>
+
+                <div class="hidden md:flex items-center justify-end w-6 shrink-0 text-cohere-slate group-hover:text-cohere-blue group-hover:translate-x-1 transition-all">
+                  &rarr;
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
   </div>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const filterBtns = document.querySelectorAll('.project-filter-btn');
+      const items = document.querySelectorAll('.project-item');
+      const showcaseBand = document.getElementById('projects-showcase-band');
+      const archiveBand = document.getElementById('projects-archive-band');
+
+      if (!filterBtns.length) return;
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-cohere-nearblack', 'text-white', 'border-cohere-nearblack');
+            b.classList.add('bg-transparent', 'text-cohere-ink', 'border-cohere-hairline');
+          });
+
+          btn.classList.remove('bg-transparent', 'text-cohere-ink', 'border-cohere-hairline');
+          btn.classList.add('bg-cohere-nearblack', 'text-white', 'border-cohere-nearblack');
+
+          const filter = btn.getAttribute('data-filter') || 'all';
+
+          items.forEach(item => {
+            const el = item as HTMLElement;
+            const cats = (el.getAttribute('data-categories') || '').split(',');
+            const match = filter === 'all' || cats.includes(filter);
+            el.classList.toggle('hidden', !match);
+          });
+
+          if (showcaseBand) {
+            const visibleInShowcase = showcaseBand.querySelectorAll('.project-item:not(.hidden)').length;
+            showcaseBand.classList.toggle('hidden', visibleInShowcase === 0);
+          }
+
+          if (archiveBand) {
+            const visibleInArchive = archiveBand.querySelectorAll('.project-item:not(.hidden)').length;
+            archiveBand.classList.toggle('hidden', visibleInArchive === 0);
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

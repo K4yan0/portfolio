@@ -7,6 +7,10 @@ coverImage: "/portfolio/images/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
+> **Plateforme d'Ingénierie Interactive :** Explorez l'application web en direct, le visualiseur Grad-CAM 1D et l'architecture du pipeline sur la [Fiche Projet Exoplanet ML](/portfolio/fr/projects/exoplanet-ml).
+> 
+> **Recherche Associée :** Pour une étude empirique du prétraitement statistique et du déplacement du bruit de fond sur ce dataset, consultez [Dérive de Représentation sous Normalisation Robuste (Z-Score vs MAD)](/portfolio/fr/blog/mad).
+
 *🔗 Code source : [github.com/K4yan0/exoplanet-detection-ml](https://github.com/K4yan0/exoplanet-detection-ml)*
 
 ## 1. Résumé
@@ -71,3 +75,9 @@ En évaluant **TOI-1231 (TIC 447061717)** sur 5 secteurs non consécutifs, l'én
 Bien que le classificateur Ternaire et le moteur de Calibration aient considérablement réduit les faux positifs, un cas particulier astrophysique majeur demeure : les **Variations du Temps de Transit (TTV)**.
 
 Le pipeline actuel suppose une orbite parfaitement périodique. Dans les systèmes multi-planétaires avec de fortes interactions gravitationnelles, les planètes transitent légèrement en avance ou en retard. Un repliement en phase strict étale ces transits décalés en un bruit indétectable. Les futures itérations de ce pipeline étudieront l'acheminement de la série temporelle continue *non repliée* via une architecture ResNet 1D ou un mécanisme d'Auto-Attention (Transformer) pour repérer nativement les événements de transit individuels apériodiques.
+
+---
+
+### Ressources & Recherche Associées
+* **[Architecture & Tableau de Bord du Projet Exoplanet ML](/portfolio/fr/projects/exoplanet-ml)**
+* **[Article Associé : Dérive de Représentation sous Normalisation Robuste (Z-Score vs MAD)](/portfolio/fr/blog/mad)**

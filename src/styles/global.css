@@ -2,6 +2,10 @@
 @config "../../tailwind.config.mjs";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
   body {
     @apply bg-cohere-canvas text-cohere-ink font-body;
   }

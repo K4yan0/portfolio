@@ -4,7 +4,12 @@ description: "Pourquoi des techniques de prétraitement mathématiquement supér
 pubDate: 2026-08-16
 tags: ["Astrophysique", "Machine Learning", "TESS", "Normalisation des données", "Décalage de représentation"]
 coverImage: "/portfolio/images/TESS.jpg"
+coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
+
+> **Plateforme d'Ingénierie Interactive :** Explorez l'application web en direct, le visualiseur Grad-CAM 1D et l'architecture du pipeline sur la [Fiche Projet Exoplanet ML](/portfolio/fr/projects/exoplanet-ml).
+> 
+> **Article de Recherche Principal :** Pour la publication centrale sur le CNN Ternaire Calibré, l'incertitude épistémique Monte Carlo et le moteur de veto IA, consultez [Moteur de Triage Ternaire, XAI et Incertitude](/portfolio/fr/blog/exoplanet-research).
 
 *🔗 Code Source : [github.com/K4yan0/exoplanet-detection-ml](https://github.com/K4yan0/exoplanet-detection-ml)*
 
@@ -112,3 +117,9 @@ La principale leçon scientifique concerne la discipline de recherche : les algo
 
 ---
 *À suivre : Briser la contrainte du pliage de phase 1D pour rechercher des variations de chronométrage de transit (TTV) à l'aide d'une architecture CNN Hiérarchique Globale/Locale.*
+
+---
+
+### Ressources & Recherche Associées
+* **[Architecture & Tableau de Bord du Projet Exoplanet ML](/portfolio/fr/projects/exoplanet-ml)**
+* **[Article de Recherche Principal : Moteur de Triage Ternaire Calibré & Incertitude Épistémique](/portfolio/fr/blog/exoplanet-research)**

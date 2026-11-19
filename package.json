@@ -23,5 +23,11 @@
     "react-dom": "^19.2.8",
     "rehype-external-links": "^3.0.0",
     "tailwindcss": "^4.3.3"
+  },
+  "overrides": {
+    "@astrojs/react": {
+      "devalue": "^5.9.3"
+    },
+    "postcss-selector-parser": "^6.1.5"
   }
 }

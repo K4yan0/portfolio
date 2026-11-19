@@ -7,6 +7,10 @@ coverImage: "/portfolio/images/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
+> **Interactive Engineering Platform:** Explore the live web application, 1D Grad-CAM visualizer, and pipeline architecture in the [Exoplanet ML Project Showcase](/portfolio/projects/exoplanet-ml).
+> 
+> **Companion Research:** For an empirical investigation of statistical preprocessing and noise floor shifts on this dataset, see [When Robust Scaling Becomes a Representation Shift (Z-Score vs. MAD)](/portfolio/blog/mad).
+
 *🔗 Source Code: [github.com/K4yan0/exoplanet-detection-ml](https://github.com/K4yan0/exoplanet-detection-ml)*
 
 ## 1. Abstract
@@ -71,3 +75,9 @@ When evaluating **TOI-1231 (TIC 447061717)** across 5 non-consecutive sectors, t
 While the Ternary classifier and Calibration engine have vastly reduced false positives, a major astrophysical edge case remains: **Transit Timing Variations (TTVs)**. 
 
 The current pipeline assumes a perfectly periodic orbit. In multi-planet systems with strong gravitational interactions, planets transit slightly early or late. Strict phase-folding smears these offset transits into undetectable noise. Future iterations of this pipeline will investigate routing the *unfolded* continuous time-series through a 1D ResNet or Self-Attention mechanism (Transformer) to spot individual, a-periodic transit events natively.
+
+---
+
+### Related Research & Engineering
+* **[Exoplanet ML Project Architecture & Dashboard](/portfolio/projects/exoplanet-ml)**
+* **[Companion Paper: Representation Shift & Noise Floor Analysis (Z-Score vs. MAD)](/portfolio/blog/mad)**

@@ -5,10 +5,11 @@ import { Button } from '../components/Button';
 import { ProjectCard } from '../components/ProjectCard';
 
 const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
-  .filter(p => p.id.startsWith('en/'))
-  .sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf())
-  .slice(0, 2);
+// Featured projects selected by priority: Exoplanet ML (#1) and Enterprise Data Agent (#2)
+const prioritySlugs = ['exoplanet-ml', 'enterprise-agent'];
+const featuredProjects = prioritySlugs
+  .map(slug => allProjects.find(p => p.id.startsWith('en/') && p.id.includes(slug)))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
 ---
 
 <BaseLayout title="System. | Developer Portfolio" description="A minimalist engineering showcase.">

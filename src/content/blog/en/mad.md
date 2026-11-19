@@ -7,6 +7,10 @@ tags: ["Astrophysics", "Machine Learning", "TESS", "Data Normalization", "Repres
 coverImage: "/portfolio/images/TESS.jpg"
 ---
 
+> **Interactive Engineering Platform:** Explore the live dashboard, 1D Grad-CAM visualizer, and pipeline architecture in the [Exoplanet ML Project Showcase](/portfolio/projects/exoplanet-ml).
+> 
+> **Flagship Research Paper:** For the core paper on the Calibrated Ternary CNN, Monte Carlo Epistemic Uncertainty, and AI Veto engine, see [An XAI-Driven, Uncertainty-Aware Ternary Triage Engine](/portfolio/blog/exoplanet-research).
+
 *🔗 Source Code: [github.com/K4yan0/exoplanet-detection-ml](https://github.com/K4yan0/exoplanet-detection-ml)*
 
 ## 1. Abstract
@@ -113,3 +117,9 @@ The primary scientific lesson is one of research discipline: algorithms learn hi
 
 ---
 *Next up: Breaking the 1D phase-folding constraint to hunt for Transit Timing Variations (TTVs) using a hierarchical Global/Local CNN architecture.*
+
+---
+
+### Related Research & Engineering
+* **[Exoplanet ML Project Architecture & Dashboard](/portfolio/projects/exoplanet-ml)**
+* **[Core Research Paper: Calibrated Ternary Triage Engine & Epistemic Uncertainty](/portfolio/blog/exoplanet-research)**

@@ -4,6 +4,7 @@ description: "Pourquoi des techniques de prétraitement mathématiquement supér
 pubDate: 2026-08-16
 tags: ["Astrophysique", "Machine Learning", "TESS", "Normalisation des données", "Décalage de représentation"]
 coverImage: "/portfolio/images/TESS.jpg"
+coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
 > **Plateforme d'Ingénierie Interactive :** Explorez l'application web en direct, le visualiseur Grad-CAM 1D et l'architecture du pipeline sur la [Fiche Projet Exoplanet ML](/portfolio/fr/projects/exoplanet-ml).

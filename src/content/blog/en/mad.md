@@ -1,10 +1,10 @@
-
 ---
 title: "When Robust Scaling Becomes a Representation Shift: An Empirical Study of Z-Score and MAD Normalization for TESS Transit Classification"
 description: "Why mathematically superior preprocessing techniques can fatally degrade an astrophysics pipeline if they alter the statistical distribution learned by the neural network."
 pubDate: 2026-08-16
 tags: ["Astrophysics", "Machine Learning", "TESS", "Data Normalization", "Representation Shift"]
 coverImage: "/portfolio/images/TESS.jpg"
+coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
 > **Interactive Engineering Platform:** Explore the live dashboard, 1D Grad-CAM visualizer, and pipeline architecture in the [Exoplanet ML Project Showcase](/portfolio/projects/exoplanet-ml).

@@ -8,7 +8,7 @@ const allProjects = await getCollection('projects');
 const projects = allProjects.filter(p => p.id.startsWith('fr/'));
 projects.sort((a, b) => b.data.launchDate.valueOf() - a.data.launchDate.valueOf());
 ---
-<BaseLayout title="Projets | System." description="Une vitrine de systèmes d'ingénierie.">
+<BaseLayout title="Projets | Swan." description="Une vitrine de systèmes d'ingénierie.">
   <div class="space-y-16">
     <header class="border-b border-cohere-hairline pb-12 max-w-4xl">
       <h1 class="font-display text-[48px] md:text-[64px] tracking-tight text-cohere-nearblack mb-4">Systèmes Ingénierie</h1>

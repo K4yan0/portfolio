@@ -5,9 +5,10 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  fullBleed?: boolean;
 }
 
-const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio." } = Astro.props;
+const { title = "Developer | Portfolio", description = "A minimalist and premium developer portfolio.", fullBleed = false } = Astro.props;
 const lang = Astro.currentLocale || 'en';
 const sysBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const langPrefix = lang === 'fr' ? '/fr' : '';
@@ -54,7 +55,7 @@ const switchLangPath = lang === 'en'
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- KaTeX for Math Formulas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
@@ -117,12 +118,16 @@ const switchLangPath = lang === 'en'
     <header class="sticky top-0 z-50 w-full border-b border-cohere-hairline/80 bg-cohere-canvas/90 backdrop-blur-md transition-all">
       <div class="w-full px-6 py-5 md:px-12 flex items-center justify-between">
         <div class="md:w-1/4">
-          <a href={`${base}/`} class="font-display font-medium text-xl tracking-tight text-cohere-black no-underline">
-            System<span class="text-cohere-coral">.</span>
+          <a href={`${base}/`} class="inline-flex items-center gap-2.5 font-display font-medium text-xl tracking-tight text-cohere-black hover:opacity-80 transition-opacity no-underline">
+            <img src={`${sysBase}/favicon.svg`} alt="" class="w-7 h-7 object-contain" />
+            <span>Swan<span class="text-cohere-coral">.</span></span>
           </a>
         </div>
         
         <nav class="hidden md:flex md:w-1/2 justify-center space-x-6 md:space-x-8">
+          <a href={`${base}/`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
+            {lang === 'fr' ? 'Accueil' : 'Home'}
+          </a>
           <a href={`${base}/about`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
             {lang === 'fr' ? 'À propos' : 'About'}
           </a>
@@ -162,6 +167,9 @@ const switchLangPath = lang === 'en'
       <!-- Mobile Navigation Drawer -->
       <nav id="mobile-menu" class="hidden md:hidden border-t border-cohere-hairline/80 bg-cohere-canvas px-6 py-6">
         <div class="flex flex-col space-y-5">
+          <a href={`${base}/`} class="font-body text-[16px] text-cohere-ink hover:text-cohere-blue transition-colors">
+            {lang === 'fr' ? 'Accueil' : 'Home'}
+          </a>
           <a href={`${base}/about`} class="font-body text-[16px] text-cohere-ink hover:text-cohere-blue transition-colors">
             {lang === 'fr' ? 'À propos' : 'About'}
           </a>
@@ -199,14 +207,17 @@ const switchLangPath = lang === 'en'
       });
     </script>
 
-    <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24">
+    <main class={fullBleed ? "flex-grow w-full" : "flex-grow w-full max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24"}>
       <slot />
     </main>
 
-    <footer class="w-full bg-cohere-nearblack text-white px-6 py-16 md:px-12 mt-24">
+    <footer class={`w-full bg-cohere-nearblack text-white px-6 py-16 md:px-12 ${fullBleed ? '' : 'mt-24'}`}>
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
         <div class="mb-12 md:mb-0">
-          <span class="font-display text-2xl tracking-tight text-white mb-4 block">System.</span>
+          <a href={`${base}/`} class="inline-flex items-center gap-2.5 font-display text-2xl tracking-tight text-white mb-4 no-underline">
+            <img src={`${sysBase}/favicon.svg`} alt="" class="w-7 h-7 object-contain invert" />
+            <span>Swan<span class="text-cohere-coral">.</span></span>
+          </a>
           <span class="font-body text-sm text-cohere-muted block max-w-xs leading-relaxed">
             {lang === 'fr' 
               ? 'Un portfolio d\'ingénierie minimaliste conçu avec Astro et Tailwind.' 

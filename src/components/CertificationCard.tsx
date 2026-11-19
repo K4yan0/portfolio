@@ -31,7 +31,7 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
   verifyText = "Verify Credential"
 }) => {
   return (
-    <div className="group flex flex-col bg-white border border-cohere-hairline rounded-lg p-6 md:p-8 transition-all duration-300 hover:border-cohere-ink shadow-sm">
+    <div className="group flex flex-col bg-white border border-cohere-hairline rounded-lg p-6 md:p-8 transition-all duration-300 hover:border-cohere-ink">
       {/* Header with Badge Image on Left and Title/Issuer on Right */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6">
         {/* Badge / Logo on the left */}

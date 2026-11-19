@@ -23,7 +23,7 @@ const { Content } = await render(entry);
   <article class="max-w-4xl mx-auto py-12 md:py-20">
     <header class="mb-20 space-y-12">
       {entry.data.coverImage && (
-        <div class="w-full aspect-video rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone shadow-sm">
+        <div class="w-full aspect-video rounded-[22px] overflow-hidden border border-cohere-hairline bg-cohere-stone">
           <img src={entry.data.coverImage} alt={entry.data.title} class="w-full h-full object-cover" />
         </div>
       )}

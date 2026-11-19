@@ -12,133 +12,231 @@ const featuredProjects = prioritySlugs
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 ---
 
-<BaseLayout title="System. | Portfolio Développeur" description="Un portfolio d'ingénierie minimaliste.">
-  <div class="space-y-40">
+<BaseLayout title="Swan. | Portfolio Développeur" description="Un portfolio d'ingénierie minimaliste." fullBleed={true}>
+  <div>
     
-    <!-- Hero Section -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-7 space-y-10">
-        <h1 class="font-display text-[64px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
-          Ingénierie IA & Data, <br class="hidden md:block"/> de l'embarqué à l'entreprise.
-        </h1>
-        <p class="font-body text-[18px] md:text-[20px] leading-[1.6] text-cohere-ink max-w-xl opacity-90">
-          Étudiant ingénieur en double diplôme à l'ESIEA (Systèmes Embarqués & IA) et SKEMA Business School (MSc AI for Business Transformation). Je conçois des pipelines de données robustes, des modèles de ML explicables et des agents intelligents faisant le lien entre télémétrie matérielle et systèmes de données d'entreprise.
-        </p>
-        <div class="flex flex-wrap items-center gap-6 pt-4">
-          <Button variant="primary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`}>Voir les Projets</Button>
-          <Button variant="secondary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/about`}>À propos de moi</Button>
+    <!-- Band 1: Hero Section (Canvas White) -->
+    <section class="w-full bg-cohere-canvas">
+      <div class="max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-7 space-y-10">
+          <h1 class="font-display text-[64px] md:text-[80px] leading-[0.95] tracking-[-1.92px] text-cohere-nearblack">
+            Ingénierie IA & Data, <br class="hidden md:block"/> de l'embarqué à l'entreprise.
+          </h1>
+          <p class="font-body text-[18px] md:text-[20px] leading-[1.6] text-cohere-ink max-w-xl opacity-90">
+            Étudiant ingénieur en double diplôme à l'ESIEA (Systèmes Embarqués & IA) et SKEMA Business School (MSc AI for Business Transformation). Je conçois des pipelines de données robustes, des modèles de ML explicables et des agents intelligents faisant le lien entre télémétrie matérielle et systèmes de données d'entreprise.
+          </p>
+          <div class="flex flex-wrap items-center gap-6 pt-4">
+            <Button variant="primary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`}>Voir les Projets</Button>
+            <Button variant="secondary" href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/about`}>À propos de moi</Button>
+          </div>
         </div>
-      </div>
-      
-      <div class="lg:col-span-5 relative group hidden md:block">
-          <div class="relative w-full aspect-square md:aspect-[4/5] bg-cohere-stone overflow-hidden shadow-2xl">
+        
+        <div class="lg:col-span-5 relative group hidden md:block">
+          <div class="relative w-full aspect-square md:aspect-[4/5] bg-cohere-stone rounded-[22px] border border-cohere-hairline overflow-hidden">
             <img 
               src={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/images/hero.jpg`} 
               alt="Swan - Développeur" 
               class="w-full h-full object-cover grayscale opacity-90 transition-all duration-1000 hover:grayscale-0 hover:opacity-100 hover:scale-105"
             />
-          <div class="absolute bottom-4 left-4 right-4 bg-cohere-nearblack/90 backdrop-blur-md border border-cohere-hairline/20 rounded-lg p-4 flex items-center justify-between">
-            <span class="font-mono text-[11px] uppercase tracking-wider text-white">System.Status</span>
-            <span class="font-mono text-[11px] uppercase tracking-wider text-cohere-softcoral flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-cohere-softcoral animate-pulse"></span> Dispo Mai 2027 • Stage 6 mois
-            </span>
+            <div class="absolute bottom-4 left-4 right-4 bg-cohere-nearblack/90 backdrop-blur-md border border-cohere-hairline/20 rounded-md p-4 flex items-center justify-between">
+              <span class="font-mono text-[11px] uppercase tracking-wider text-white">System.Status</span>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-cohere-softcoral flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-cohere-softcoral animate-pulse"></span> Dispo Mai 2027 • Stage 6 mois
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bandeau d'Affiliations (pattern Cohere trust-logo-strip) -->
+      <div class="max-w-7xl mx-auto px-6 pb-14 md:px-12 md:pb-16">
+        <div class="border-t border-cohere-hairline/80 pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-cohere-muted shrink-0">
+            Parcours Académique &amp; Entreprises
+          </span>
+          <div class="flex flex-wrap items-center gap-x-10 gap-y-3 text-cohere-slate">
+            <span class="font-display text-[17px] tracking-tight text-cohere-nearblack/80">ESIEA</span>
+            <span class="font-display text-[17px] tracking-tight text-cohere-nearblack/80">SKEMA Business School</span>
+            <span class="font-display text-[17px] tracking-tight text-cohere-nearblack/80">SeoulTech</span>
+            <span class="font-display text-[17px] tracking-tight text-cohere-nearblack/80">NG Metrics</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience Timeline -->
-    <section class="max-w-4xl">
-      <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack mb-16 border-b border-cohere-hairline pb-8">
-        Parcours
-      </h2>
-      
-      <div class="relative pl-8 md:pl-0">
-        <div class="hidden md:block absolute left-[120px] top-2 bottom-0 w-[1px] bg-cohere-hairline"></div>
+    <!-- Band 2: Piliers d'Ingénierie (Bande Pleine Largeur Vert Entreprise Cohere) -->
+    <section class="w-full bg-cohere-green text-white">
+      <div class="max-w-7xl mx-auto px-6 py-24 md:px-12 md:py-28">
+        <div class="max-w-3xl mb-16 space-y-4">
+          <span class="font-mono text-[12px] uppercase tracking-[0.2em] text-cohere-softcoral block">
+            Piliers d'Ingénierie
+          </span>
+          <h2 class="font-display text-[40px] md:text-[52px] leading-[1.05] tracking-[-1px] text-white">
+            Conçu pour la fiabilité, du signal physique à l'échelle entreprise.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Pillar 1 -->
+          <div class="bg-white/[0.04] border border-white/15 rounded-md p-8 flex flex-col justify-between space-y-8">
+            <div class="space-y-5">
+              <svg class="w-8 h-8 text-cohere-softcoral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12h4l3-7 4 14 3-7h6" />
+              </svg>
+              <h3 class="font-display text-[24px] leading-[1.25] tracking-[-0.24px] text-white">
+                ML Explicable & Calibration
+              </h3>
+              <p class="font-body text-[15px] leading-[1.6] text-white/75">
+                Conception de CNN 1D et de pipelines de triage temporel appuyés par l'incertitude épistémique (Monte Carlo Dropout), le Temperature Scaling et le consensus Grad-CAM / SHAP.
+              </p>
+            </div>
+            <div class="pt-5 border-t border-white/10 font-mono text-[11px] uppercase tracking-wider text-white/60">
+              PyTorch · Keras · XAI · ECE
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="bg-white/[0.04] border border-white/15 rounded-md p-8 flex flex-col justify-between space-y-8">
+            <div class="space-y-5">
+              <svg class="w-8 h-8 text-cohere-softcoral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <path d="M10 6.5h4M17.5 10v4M14 17.5h-4M6.5 14v-4" />
+              </svg>
+              <h3 class="font-display text-[24px] leading-[1.25] tracking-[-0.24px] text-white">
+                Data d'Entreprise & Agents IA
+              </h3>
+              <p class="font-body text-[15px] leading-[1.6] text-white/75">
+                Connexion de LLMs modernes aux systèmes d'entreprise existants sans fuite de données : proxys d'impersonnalisation SSO, traduction MDX/MOLAP et garde-fous déterministes.
+              </p>
+            </div>
+            <div class="pt-5 border-t border-white/10 font-mono text-[11px] uppercase tracking-wider text-white/60">
+              Agents LLM · SQL · MDX · Gouvernance
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="bg-white/[0.04] border border-white/15 rounded-md p-8 flex flex-col justify-between space-y-8">
+            <div class="space-y-5">
+              <svg class="w-8 h-8 text-cohere-softcoral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="6" y="6" width="12" height="12" rx="1.5" />
+                <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
+              </svg>
+              <h3 class="font-display text-[24px] leading-[1.25] tracking-[-0.24px] text-white">
+                Télémétrie Embarquée & Cloud
+              </h3>
+              <p class="font-body text-[15px] leading-[1.6] text-white/75">
+                Passerelle entre télémétrie matérielle sous contraintes (MAVLink, 4G, bus capteurs) et infrastructures cloud déterministes provisionnées via Docker, Kubernetes et Terraform.
+              </p>
+            </div>
+            <div class="pt-5 border-t border-white/10 font-mono text-[11px] uppercase tracking-wider text-white/60">
+              C/C++ · IoT · GCP · Kubernetes
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Band 3: Experience Timeline (Canvas White) -->
+    <section class="w-full bg-cohere-canvas">
+      <div class="max-w-7xl mx-auto px-6 py-24 md:px-12 md:py-32">
+        <div class="max-w-4xl">
+          <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack mb-16 border-b border-cohere-hairline pb-8">
+            Parcours
+          </h2>
+          
+          <div class="relative pl-8 md:pl-0">
+            <div class="hidden md:block absolute left-[120px] top-2 bottom-0 w-[1px] bg-cohere-hairline"></div>
+            
+            <div class="space-y-16">
+              
+              <!-- Item 1 -->
+              <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
+                <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-cohere-nearblack rounded-full ring-4 ring-cohere-canvas"></div>
+                <div class="md:w-[100px] shrink-0 pt-1">
+                  <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026 - PRÉS</span>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Double Diplôme (MSc AIBT)</h3>
+                  <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
+                    SKEMA Business School & ESIEA. Master of Science en Artificial Intelligence for Business Transformation.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Item 2 -->
+              <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
+                <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
+                <div class="md:w-[100px] shrink-0 pt-1">
+                  <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026</span>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Stagiaire Ingénieur IA & Data (5 mois)</h3>
+                  <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
+                    NG Metrics. Conception d'un proxy d'impersonnalisation SSO d'entreprise et d'un Agent IA sous Excel traduisant le langage naturel en requêtes MDX sur des cubes MOLAP sans fuite de données. Automatisation de pipelines d'analyse et de reporting comptable sous PowerBI.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
+                <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
+                <div class="md:w-[100px] shrink-0 pt-1">
+                  <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2024</span>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Échange Académique (ML & Quantique)</h3>
+                  <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
+                    Seoul National University of Science and Technology (Séoul, Corée du Sud). Semestre intensif avec des cours de Machine Learning et d'Informatique Quantique.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Item 4 -->
+              <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
+                <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
+                <div class="md:w-[100px] shrink-0 pt-1">
+                  <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2021 - 2027</span>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Diplôme d'Ingénieur Informatique</h3>
+                  <p class="font-body text-[16px] leading-[1.6] text-cohere-ink max-w-2xl opacity-90">
+                    ESIEA. Spécialisation en Systèmes Embarqués. J'ai choisi cette filière car l'IA et les systèmes embarqués seront intimement liés dans le futur.
+                  </p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Band 4: Featured Projects (Bande Pleine Largeur Pierre Douce Cohere) -->
+    <section class="w-full bg-cohere-stone border-t border-cohere-hairline/80">
+      <div class="max-w-7xl mx-auto px-6 py-24 md:px-12 md:py-32">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-cohere-hairline pb-8">
+          <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack">
+            Projets Sélectionnés
+          </h2>
+          <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
+            Voir tous les projets &rarr;
+          </a>
+        </div>
         
-        <div class="space-y-16">
-          
-          <!-- Item 1 -->
-          <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
-            <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-cohere-nearblack rounded-full ring-4 ring-cohere-canvas"></div>
-            <div class="md:w-[100px] shrink-0 pt-1">
-              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026 - PRÉS</span>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Double Diplôme (MSc AIBT)</h3>
-              <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                SKEMA Business School & ESIEA. Master of Science en Artificial Intelligence for Business Transformation.
-              </p>
-            </div>
-          </div>
-          
-          <!-- Item 2 -->
-          <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
-            <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
-            <div class="md:w-[100px] shrink-0 pt-1">
-              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2026</span>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Stagiaire Ingénieur IA & Data (5 mois)</h3>
-              <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                NG Metrics. Conception d'un proxy d'impersonnalisation SSO d'entreprise et d'un Agent IA sous Excel traduisant le langage naturel en requêtes MDX sur des cubes MOLAP sans fuite de données. Automatisation de pipelines d'analyse et de reporting comptable sous PowerBI.
-              </p>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
-            <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
-            <div class="md:w-[100px] shrink-0 pt-1">
-              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2024</span>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Échange Académique (ML & Quantique)</h3>
-              <p class="font-body text-[16px] leading-[1.6] text-cohere-ink mb-4 max-w-2xl opacity-90">
-                Seoul National University of Science and Technology (Séoul, Corée du Sud). Semestre intensif avec des cours de Machine Learning et d'Informatique Quantique.
-              </p>
-            </div>
-          </div>
-          
-          <!-- Item 4 -->
-          <div class="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-16">
-            <div class="hidden md:block absolute left-[117px] top-2 w-[7px] h-[7px] bg-white border border-cohere-hairline rounded-full ring-4 ring-cohere-canvas"></div>
-            <div class="md:w-[100px] shrink-0 pt-1">
-              <span class="font-mono text-[14px] text-cohere-muted tracking-wider">2021 - 2027</span>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-display text-[24px] tracking-[-0.32px] text-cohere-nearblack mb-2">Diplôme d'Ingénieur Informatique</h3>
-              <p class="font-body text-[16px] leading-[1.6] text-cohere-ink max-w-2xl opacity-90">
-                ESIEA. Spécialisation en Systèmes Embarqués. J'ai choisi cette filière car l'IA et les systèmes embarqués seront intimement liés dans le futur.
-              </p>
-            </div>
-          </div>
-          
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+          {featuredProjects.map(project => (
+            <ProjectCard 
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.techStack.slice(0, 3)}
+              imageUrl={project.data.coverImage}
+              url={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects/${project.id.replace('fr/', '')}`}
+            />
+          ))}
         </div>
-      </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section>
-      <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-cohere-hairline pb-8">
-        <h2 class="font-display text-[48px] leading-[1.1] tracking-[-0.48px] text-cohere-nearblack">
-          Projets Sélectionnés
-        </h2>
-        <a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue underline underline-offset-4 decoration-cohere-hairline hover:decoration-cohere-ink transition-colors mt-4 md:mt-0">
-          Voir tous les projets &rarr;
-        </a>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-        {featuredProjects.map(project => (
-          <ProjectCard 
-            title={project.data.title}
-            description={project.data.description}
-            tags={project.data.techStack.slice(0, 3)}
-            imageUrl={project.data.coverImage}
-            url={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/fr/projects/${project.id.replace('fr/', '')}`}
-          />
-        ))}
       </div>
     </section>
 

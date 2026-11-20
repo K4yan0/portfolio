@@ -86,7 +86,7 @@ const switchLangPath = lang === 'en'
         const blocks = document.querySelectorAll('pre, .mermaid');
         for (const block of blocks) {
           const text = block.textContent.trim();
-          if ((text.startsWith('flowchart') || text.startsWith('sequenceDiagram') || text.startsWith('graph')) && !block.dataset.rendered) {
+          if ((text.startsWith('flowchart') || text.startsWith('sequenceDiagram') || text.startsWith('graph') || text.startsWith('stateDiagram')) && !block.dataset.rendered) {
             block.dataset.rendered = "true";
             const id = `mermaid-graph-${Math.random().toString(36).substring(2, 9)}`;
             try {
@@ -136,6 +136,9 @@ const switchLangPath = lang === 'en'
           <a href={`${base}/projects`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
             {lang === 'fr' ? 'Projets' : 'Projects'}
           </a>
+          <a href={`${base}/hackathons`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
+            Hackathons
+          </a>
           <a href={`${base}/blog`} class="font-body text-[14px] text-cohere-ink hover:text-cohere-blue transition-colors underline-offset-4 hover:underline">
             Blog
           </a>
@@ -177,6 +180,9 @@ const switchLangPath = lang === 'en'
           </a>
           <a href={`${base}/projects`} class="font-body text-[16px] text-cohere-ink hover:text-cohere-blue transition-colors">
             {lang === 'fr' ? 'Projets' : 'Projects'}
+          </a>
+          <a href={`${base}/hackathons`} class="font-body text-[16px] text-cohere-ink hover:text-cohere-blue transition-colors">
+            Hackathons
           </a>
           <a href={`${base}/blog`} class="font-body text-[16px] text-cohere-ink hover:text-cohere-blue transition-colors">
             Blog

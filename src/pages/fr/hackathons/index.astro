@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../components/BaseLayout.astro';
+import { Tag } from '../../../components/Tag';
+
+const allHackathons = await getCollection('hackathons');
+const hackathons = allHackathons.filter(h => h.id.startsWith('fr/') || h.id.startsWith('fr\\'));
+hackathons.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const getReadingTime = (body?: string) => {
+  const words = (body || '').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
+---
+
+<BaseLayout title="Hackathons | Swan." description="Hackathons, sprints d'innovation et défis techniques intensifs." fullBleed={true}>
+  <div>
+    <!-- Band 1 : En-tête éditorial blanc -->
+    <section class="w-full bg-cohere-canvas">
+      <div class="max-w-7xl mx-auto px-6 pt-16 pb-12 md:px-12 md:pt-24 md:pb-16">
+        <div class="max-w-4xl space-y-5">
+          <span class="font-mono text-[12px] uppercase tracking-[0.2em] text-cohere-muted block">
+            {String(hackathons.length).padStart(2, '0')} {hackathons.length === 1 ? 'Hackathon' : 'Hackathons'}
+          </span>
+          <h1 class="font-display text-[48px] md:text-[64px] leading-[1.02] tracking-[-1.28px] text-cohere-nearblack">
+            Hackathons
+          </h1>
+          <p class="font-body text-[18px] md:text-[20px] leading-[1.6] text-cohere-muted max-w-2xl">
+            Compétitions, sprints d'ingénierie chronométrés et prototypes d'architecture conçus sous contraintes réelles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Band 2 : Bande Pleine Largeur Pierre Douce -->
+    <section class="w-full bg-cohere-stone border-t border-cohere-hairline/80">
+      <div class="max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-24">
+        {hackathons.length === 0 ? (
+          <div class="py-16 px-8 flex flex-col items-center justify-center text-center space-y-4 bg-white border border-cohere-hairline rounded-[22px]">
+            <h2 class="font-display text-[24px] tracking-tight text-cohere-nearblack">Pas encore de hackathons</h2>
+            <p class="font-body text-[16px] text-cohere-slate max-w-md">
+              Revenez bientôt pour découvrir mes prochains prototypes de compétition.
+            </p>
+          </div>
+        ) : (
+          <div class="space-y-8">
+            {hackathons.map(entry => {
+              const slug = entry.id.replace(/^fr[\\/]/, '');
+              const readingTime = getReadingTime(entry.body);
+              return (
+                <a
+                  href={`${base}/fr/hackathons/${slug}`}
+                  class="group block bg-white border border-cohere-hairline hover:border-cohere-ink rounded-[22px] p-8 md:p-10 transition-colors duration-300 no-underline"
+                >
+                  {entry.data.hostLogos && entry.data.hostLogos.length > 0 && (
+                    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-cohere-borderlight">
+                      <div class="flex flex-wrap items-center gap-4">
+                        {entry.data.hostLogos.map((logo, idx) => (
+                          <>
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              class="h-5 md:h-6 w-auto object-contain"
+                            />
+                            {idx < entry.data.hostLogos!.length - 1 && (
+                              <span class="font-mono text-[12px] text-cohere-hairline select-none">&times;</span>
+                            )}
+                          </>
+                        ))}
+                      </div>
+                      <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-cohere-muted">
+                        Organisé par
+                      </span>
+                    </div>
+                  )}
+
+                  <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+                    <div class="space-y-5 max-w-3xl">
+                      <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                        {entry.data.event && (
+                          <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-cohere-coral flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cohere-coral"></span>
+                            {entry.data.event}
+                          </span>
+                        )}
+                        {entry.data.winStatus && (
+                          <span class="font-mono text-[11px] uppercase tracking-wider text-cohere-green bg-cohere-greenwash border border-cohere-green/20 px-2.5 py-0.5 rounded-full">
+                            {entry.data.winStatus}
+                          </span>
+                        )}
+                        <span class="font-mono text-[12px] text-cohere-muted uppercase tracking-wider">
+                          {entry.data.date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', day: 'numeric' })}
+                        </span>
+                        <span class="font-mono text-[12px] text-cohere-slate">· {entry.data.location}</span>
+                        {entry.data.duration && (
+                          <span class="font-mono text-[12px] text-cohere-slate">· {entry.data.duration}</span>
+                        )}
+                      </div>
+
+                      <h2 class="font-display text-[28px] md:text-[36px] leading-[1.12] tracking-[-0.48px] text-cohere-nearblack group-hover:text-cohere-blue transition-colors">
+                        {entry.data.title}
+                      </h2>
+
+                      <p class="font-body text-[16px] md:text-[17px] leading-[1.6] text-cohere-ink opacity-90">
+                        {entry.data.description}
+                      </p>
+
+                      <div class="flex flex-wrap items-center gap-2 pt-2">
+                        {entry.data.techStack.slice(0, 5).map(tech => (
+                          <Tag label={tech} variant="tech" />
+                        ))}
+                        {entry.data.techStack.length > 5 && (
+                          <span class="font-mono text-[11px] text-cohere-muted px-1.5">
+                            +{entry.data.techStack.length - 5}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-between shrink-0 lg:min-w-[180px] pt-6 lg:pt-0 border-t lg:border-t-0 border-cohere-borderlight gap-4">
+                      <span class="font-mono text-[12px] text-cohere-muted uppercase tracking-wider">
+                        {readingTime} min de lecture
+                      </span>
+                      <span class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-cohere-nearblack group-hover:text-cohere-blue transition-colors">
+                        Lire l'étude de cas
+                        <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

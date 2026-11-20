@@ -34,8 +34,17 @@ const hackathonsCollection = defineCollection({
     description: z.string(),
     date: z.date(),
     location: z.string(),
+    event: z.string().optional(),
+    duration: z.string().optional(),
+    role: z.string().optional(),
     winStatus: z.string().optional(),
     techStack: z.array(z.string()),
+    githubUrl: z.string().optional(),
+    coverImage: z.string().optional(),
+    hostLogos: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+    })).optional(),
   }),
 });
 

@@ -3,7 +3,7 @@ title: "Un moteur de triage ternaire basé sur l'incertitude et la XAI pour la d
 description: "Surmonter les échecs de l'algorithme BLS et les faux positifs sur les données TESS à l'aide d'un CNN ternaire calibré propulsé par l'IA explicable et le Monte Carlo Dropout."
 pubDate: 2026-08-11
 tags: ["IA Explicable", "Astrophysique", "Machine Learning", "TESS", "Calibration de Modèle"]
-coverImage: "/portfolio/images/TESS.jpg"
+coverImage: "/portfolio/images/exoplanets/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
@@ -26,7 +26,7 @@ Le pipeline se connecte directement à l'API MAST de la NASA via `lightkurve` po
 2. **Dé-tendanciation Spline Passe-Haut :** La variabilité stellaire basse fréquence (par exemple, les taches stellaires en rotation sur les naines rouges) est découplée des signaux de transit haute fréquence à l'aide d'un filtre de Savitzky-Golay à fenêtre large (`window_length=401`). Cela garantit que les transits de 4 à 5 heures sont largement préservés tandis que les grandes ondes stellaires sinusoïdales sont aplaties.
 3. **Normalisation Robuste :** Le pipeline applique une mise à l'échelle robuste en utilisant l'Écart Absolu Médian (MAD) plutôt que l'Écart-Type, empêchant les éruptions stellaires massives d'écraser les profondeurs de transit. Les anomalies positives sont rigoureusement écrêtées à `+3.0` MAD, tandis que les transits profonds négatifs restent non écrêtés pour préserver la géométrie physique.
 
-![Courbe de lumière brute vs dé-tendancée](/portfolio/images/raw_vs_detrended.png)
+![Courbe de lumière brute vs dé-tendancée](/portfolio/images/exoplanets/raw_vs_detrended.png)
 *Figure 1 : La dé-tendanciation Spline Passe-Haut découple la variabilité stellaire basse fréquence des signaux de transit haute fréquence.*
 
 ## 3. La mise à niveau vers le CNN Ternaire (Résoudre le problème des EBs)
@@ -45,13 +45,13 @@ Les réseaux de neurones sont connus pour être trop confiants. Pour garantir la
 
 Pour optimiser encore cela, nous avons appliqué le **Temperature Scaling** via un optimiseur SciPy, produisant une constante de calibration optimale de $T=1,0853$. En divisant les logits bruts du CNN par $T$ avant l'activation softmax, nous alignons le modèle de sorte que lorsque le pipeline revendique "90 % de confiance", il est statistiquement très probable qu'il ait raison environ 9 fois sur 10.
 
-![Diagramme de fiabilité et courbe de calibration](/portfolio/images/reliability_diagram_ternary.png)
+![Diagramme de fiabilité et courbe de calibration](/portfolio/images/exoplanets/reliability_diagram_ternary.png)
 *Figure 2 : Erreur de calibration attendue (ECE) et Temperature Scaling alignant les logits bruts sur la probabilité statistique réelle.*
 
 ## 5. IA Explicable & Ablation Contrefactuelle
 Pour évaluer si le CNN s'appuie sur l'astrophysique physique plutôt que sur des artefacts du jeu de données, nous avons établi un **Consensus XAI** utilisant Grad-CAM, SHAP (Théorie des Jeux) et Integrated Gradients.
 
-![XAI Heatmaps pour Eclipsing Binary](/portfolio/images/xai_grid_tic185259483.png)
+![XAI Heatmaps pour Eclipsing Binary](/portfolio/images/exoplanets/xai_grid_tic185259483.png)
 *Figure 3: XAI Heatmaps pour une Binaire à Éclipses.*
 
 Nous avons ensuite effectué une **Analyse d'Ablation**, en masquant systématiquement les régions physiques de la courbe de lumière repliée en phase pour observer la baisse (ou l'augmentation) de la confiance du modèle.

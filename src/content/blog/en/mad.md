@@ -3,7 +3,7 @@ title: "When Robust Scaling Becomes a Representation Shift: An Empirical Study o
 description: "Why mathematically superior preprocessing techniques can fatally degrade an astrophysics pipeline if they alter the statistical distribution learned by the neural network."
 pubDate: 2026-08-16
 tags: ["Astrophysics", "Machine Learning", "TESS", "Data Normalization", "Representation Shift"]
-coverImage: "/portfolio/images/TESS.jpg"
+coverImage: "/portfolio/images/exoplanets/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
@@ -86,13 +86,13 @@ Beyond standard performance metrics, we audited the model's statistical calibrat
 
 The degradation is not catastrophic (the model did not collapse entirely), but the measurable drop in accuracy coupled with a spike in MC-Dropout predictive variance tells a compelling scientific story: the model was significantly less confident in what it was seeing.
 
-![Predictive Uncertainty: Z-Score vs MAD](/portfolio/images/mad_uncertainty_plot.png)
+![Predictive Uncertainty: Z-Score vs MAD](/portfolio/images/exoplanets/mad_uncertainty_plot.png)
 *Caption: Mean predictive variance via MC-Dropout increases notably when targets are processed using MAD scaling, reflecting the model's struggle to map the unfamiliar amplitude distribution.*
 
 ## 6. XAI Investigation and Representation Shift
 To understand *why* the CNN was failing, we deployed **Grad-CAM** to overlay attention heatmaps directly onto the phase-folded light curves.
 
-![Grad-CAM Comparison: Z-Score vs MAD](/portfolio/images/mad_gradcam_comparison.png)
+![Grad-CAM Comparison: Z-Score vs MAD](/portfolio/images/exoplanets/mad_gradcam_comparison.png)
 
 Under MAD scaling, attribution became less stable and more diffuse in representative cases, while the model continued to attend broadly to transit regions. The result indicates a **representation mismatch** rather than a complete loss of transit localization.
 

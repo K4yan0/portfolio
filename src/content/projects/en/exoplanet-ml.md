@@ -5,7 +5,7 @@ launchDate: 2026-07-26
 techStack: ["Python", "1D CNN", "NASA MAST API", "Flask", "Plotly", "Grad-CAM & SHAP", "Monte Carlo Dropout", "Model Calibration"]
 githubUrl: "https://github.com/K4yan0/exoplanet-detection-ml"
 researchPaperUrl: "/portfolio/blog/exoplanet-research"
-coverImage: "/portfolio/images/exoplanet-ml-cover.jpg"
+coverImage: "/portfolio/images/exoplanets/exoplanet-ml-cover.png"
 ---
 
 > ### The Scientific Research Suite
@@ -21,13 +21,7 @@ Inspired by the [2025 NASA Space Apps Challenge ("A World Away: Hunting for Exop
 
 What began as a computer vision exploration evolved into an end-to-end scientific software system: exposing a corrupted public benchmark dataset, streaming live NASA satellite data, and developing a calibrated **Ternary AI Triage Engine** powered by Explainable AI (XAI) and epistemic uncertainty quantification.
 
-<!-- ARCHITECTURE SCHEMA PLACEHOLDER -->
-<div class="my-10 p-8 border-2 border-dashed border-cohere-hairline rounded-xl bg-cohere-stone/30 text-center space-y-2 not-prose">
-  <div class="font-mono text-xs uppercase tracking-wider text-cohere-muted font-medium">Architecture Diagram</div>
-  <div class="font-display text-xl text-cohere-nearblack">End-to-End System Pipeline & Triage Engine</div>
-  <p class="font-body text-sm text-cohere-slate max-w-md mx-auto">NASA MAST Ingestion → High-Pass SG Filter → BLS Period Grid → 1D Ternary CNN → Monte Carlo Calibration & Grad-CAM XAI</p>
-  <span class="inline-block mt-2 font-mono text-xs text-cohere-softcoral bg-cohere-softcoral/10 px-3 py-1 rounded-full border border-cohere-softcoral/20">Schema in progress (Cohere design system)</span>
-</div>
+![End-to-End System Pipeline & Triage Engine](/portfolio/images/exoplanets/E2E.jpg)
 
 ---
 
@@ -57,20 +51,14 @@ Processing raw astrophysical time-series required building a mathematically soun
 ### The V1 Prototype: Morphological Feature Extraction
 In Version 1, a lightweight **1D Convolutional Neural Network (CNN)** (16 ➝ 32 ➝ 64 filters with Dropout) was trained to recognize the sequential morphology of a transit: steep ingress, flat bottom, and steep egress. On pristine binary datasets, it achieved **90.37% Accuracy** with an AUC of 0.924.
 
-![CNN Performance Metrics](/portfolio/images/exoplanet-ml-metrics.jpg)
+![CNN Performance Metrics](/portfolio/images/exoplanets/exoplanet-ml-metrics.jpg)
 
 ### The V2 Architecture: Overcoming the Eclipsing Binary Trap
 In real astrophysics, binary classifiers fail when deployed on multi-sector data. The primary eclipse of an **Eclipsing Binary (EB)** mimics a planetary transit almost perfectly.
 
 To resolve this, the network was expanded into a **Ternary Classifier** (Planet vs. Eclipsing Binary vs. Noise) trained on augmented data injected with confirmed EBs from the Villanova Catalog. The network learns secondary eclipses and the continuous V-shaped slopes characteristic of stellar pairs.
 
-<!-- TERNARY MODEL & UNCERTAINTY SCHEMA PLACEHOLDER -->
-<div class="my-10 p-8 border-2 border-dashed border-cohere-hairline rounded-xl bg-cohere-stone/30 text-center space-y-2 not-prose">
-  <div class="font-mono text-xs uppercase tracking-wider text-cohere-muted font-medium">Model & Uncertainty Schema</div>
-  <div class="font-display text-xl text-cohere-nearblack">Ternary CNN & Monte Carlo Dropout Inference Flow</div>
-  <p class="font-body text-sm text-cohere-slate max-w-md mx-auto">1D Conv Layers (16/32/64) → 50 Stochastic Passes (Epistemic σ) → Temperature Scaling (ECE 2.35%)</p>
-  <span class="inline-block mt-2 font-mono text-xs text-cohere-softcoral bg-cohere-softcoral/10 px-3 py-1 rounded-full border border-cohere-softcoral/20">Schema in progress (Cohere design system)</span>
-</div>
+![Ternary CNN & Monte Carlo Dropout Inference Flow](/portfolio/images/exoplanets/CNN_MCD.jpg)
 
 ### Quantifying Trust: Monte Carlo Dropout & Temperature Calibration
 Real-world scientific tools cannot output overconfident, blind predictions:
@@ -100,7 +88,7 @@ The entire inference and telemetry pipeline is packaged into a dark-mode Flask a
 * **Layer-by-Layer Grad-CAM MRI:** Toggle between convolutional layers to see where the network focuses its attention (broad transit profile vs. sharp ingress/egress edges).
 * **Batch Discovery Engine:** Asynchronous background processing allowing bulk triage across dozens of stellar targets simultaneously.
 
-![XAI Dashboard Interface](/portfolio/images/exoplanet-ml-dashboard.jpg)
+![XAI Dashboard Interface](/portfolio/images/exoplanets/exoplanet-ml-dashboard.jpg)
 
 ---
 

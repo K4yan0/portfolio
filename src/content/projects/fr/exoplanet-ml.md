@@ -5,7 +5,7 @@ launchDate: 2026-07-26
 techStack: ["Python", "CNN 1D", "API NASA MAST", "Flask", "Plotly", "Grad-CAM & SHAP", "Monte Carlo Dropout", "Calibration de Modèles"]
 githubUrl: "https://github.com/K4yan0/exoplanet-detection-ml"
 researchPaperUrl: "/portfolio/fr/blog/exoplanet-research"
-coverImage: "/portfolio/images/exoplanet-ml-cover.jpg"
+coverImage: "/portfolio/images/exoplanets/exoplanet-ml-cover.png"
 ---
 
 > ### La Suite de Recherche Scientifique
@@ -21,13 +21,7 @@ Inspiré par le [2025 NASA Space Apps Challenge ("A World Away: Hunting for Exop
 
 Ce travail initial s'est transformé en un véritable système d'ingénierie scientifique de bout en bout : identification d'un jeu de données de référence corrompu, flux direct avec les API satellites de la NASA, et mise au point d'un **Moteur de Triage IA Ternaire Calibré** doté d'explicabilité (XAI) et de quantification d'incertitude.
 
-<!-- ESPACE RÉSERVÉ SCHÉMA D'ARCHITECTURE -->
-<div class="my-10 p-8 border-2 border-dashed border-cohere-hairline rounded-xl bg-cohere-stone/30 text-center space-y-2 not-prose">
-  <div class="font-mono text-xs uppercase tracking-wider text-cohere-muted font-medium">Schéma d'Architecture</div>
-  <div class="font-display text-xl text-cohere-nearblack">Pipeline Système de Bout en Bout & Moteur de Triage</div>
-  <p class="font-body text-sm text-cohere-slate max-w-md mx-auto">Ingestion NASA MAST → Filtre SG Passe-Haut → Grille Périodique BLS → CNN Ternaire 1D → Calibration Monte Carlo & XAI Grad-CAM</p>
-  <span class="inline-block mt-2 font-mono text-xs text-cohere-softcoral bg-cohere-softcoral/10 px-3 py-1 rounded-full border border-cohere-softcoral/20">Schéma en cours d'intégration (direction artistique Cohere)</span>
-</div>
+![Pipeline Système de Bout en Bout & Moteur de Triage](/portfolio/images/exoplanets/E2E.jpg)
 
 ---
 
@@ -57,20 +51,14 @@ Le traitement des séries temporelles astrophysiques a nécessité la mise en pl
 ### Le Prototype V1 : Extraction Morphologique
 Dans sa première version, un **Réseau Convolutif 1D (CNN)** léger (16 ➝ 32 ➝ 64 filtres avec Dropout) a été entraîné pour identifier la signature séquentielle d'un transit : entrée abrupte, plateau de fond plat et sortie symétrique. Sur données binaires non contaminées, le modèle a atteint **90,37% de précision** avec un AUC de 0,924.
 
-![Performances du Modèle CNN](/portfolio/images/exoplanet-ml-metrics.jpg)
+![Performances du Modèle CNN](/portfolio/images/exoplanets/exoplanet-ml-metrics.jpg)
 
 ### L'Architecture V2 : Résolution du Biais des Binaires à Éclipses
 En conditions astrophysiques réelles, un classifieur binaire échoue fréquemment face à des **Binaires à Éclipses (EB)**, dont l'éclipse primaire imite presque parfaitement un transit planétaire.
 
 Pour surmonter cette limite, le modèle a été transformé en un **Classifieur Ternaire** (Planète vs Binaire à Éclipse vs Bruit) entraîné sur un jeu de données enrichi avec le catalogue officiel d'étoiles binaires de Villanova. Le réseau apprend ainsi à détecter les éclipses secondaires et les pentes continues en "V" propres aux systèmes stellaires doubles.
 
-<!-- ESPACE RÉSERVÉ SCHÉMA MODÈLE & INCERTITUDE -->
-<div class="my-10 p-8 border-2 border-dashed border-cohere-hairline rounded-xl bg-cohere-stone/30 text-center space-y-2 not-prose">
-  <div class="font-mono text-xs uppercase tracking-wider text-cohere-muted font-medium">Schéma Modèle & Incertitude</div>
-  <div class="font-display text-xl text-cohere-nearblack">Pipeline Ternaire & Flux d'Inférence Monte Carlo</div>
-  <p class="font-body text-sm text-cohere-slate max-w-md mx-auto">Couches Convolutives 1D (16/32/64) → 50 Passes Stochastiques (σ Épistémique) → Calibration en Température (ECE 2,35%)</p>
-  <span class="inline-block mt-2 font-mono text-xs text-cohere-softcoral bg-cohere-softcoral/10 px-3 py-1 rounded-full border border-cohere-softcoral/20">Schéma en cours d'intégration (direction artistique Cohere)</span>
-</div>
+![Pipeline Ternaire & Flux d'Inférence Monte Carlo](/portfolio/images/exoplanets/CNN_MCD.jpg)
 
 ### Mesurer la Fiabilité : Monte Carlo Dropout & Calibration en Température
 Pour un usage scientifique réel, une probabilité aveugle est inacceptable :
@@ -100,7 +88,7 @@ L'ensemble de la chaîne d'inférence et de télémétrie est encapsulé dans un
 * **IRM Couche par Couche (Grad-CAM) :** Visualisation interactive des régions d'attention du réseau (profil global vs bords d'immersion/émersion).
 * **Moteur de Découverte par Lots :** Traitement asynchrone en arrière-plan permettant le triage simultané de dizaines d'étoiles.
 
-![Interface du Tableau de Bord XAI](/portfolio/images/exoplanet-ml-dashboard.jpg)
+![Interface du Tableau de Bord XAI](/portfolio/images/exoplanets/exoplanet-ml-dashboard.jpg)
 
 ---
 

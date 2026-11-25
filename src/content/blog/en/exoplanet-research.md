@@ -3,7 +3,7 @@ title: "An XAI-Driven, Uncertainty-Aware Ternary Triage Engine for Exoplanet Det
 description: "Overcoming BLS algorithmic failures and false positives on TESS data using a calibrated Ternary CNN powered by Explainable AI and Monte Carlo Dropout."
 pubDate: 2026-08-11
 tags: ["Explainable AI", "Astrophysics", "Machine Learning", "TESS", "Model Calibration"]
-coverImage: "/portfolio/images/TESS.jpg"
+coverImage: "/portfolio/images/exoplanets/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
@@ -26,7 +26,7 @@ The pipeline connects directly to the NASA MAST API via `lightkurve` to process 
 2. **High-Pass Spline Detrending:** Low-frequency stellar variability (e.g., rotating starspots on M-dwarfs) is decoupled from high-frequency transit signals using a wide-window Savitzky-Golay filter (`window_length=401`). This ensures 4-to-5-hour transits are largely preserved while massive sinusoidal stellar waves are flattened.
 3. **Robust Normalization:** The pipeline applies Robust Scaling using Median Absolute Deviation (MAD) rather than Standard Deviation, preventing massive stellar flares from squashing transit depths. Positive anomalies are hard-clipped at `+3.0` MAD, while deep negative transits remain unclipped to preserve physical geometry.
 
-![Raw vs Detrended Light Curve](/portfolio/images/raw_vs_detrended.png)
+![Raw vs Detrended Light Curve](/portfolio/images/exoplanets/raw_vs_detrended.png)
 *Figure 1: High-Pass Spline Detrending decoupling low-frequency stellar variability from high-frequency transit signals.*
 
 ## 3. The Ternary CNN Upgrade (Solving the EB Problem)
@@ -45,13 +45,13 @@ Neural networks are notorious for being overconfident. To ensure mathematical ri
 
 To further optimize this, we applied **Temperature Scaling** via a SciPy optimizer, yielding an optimal calibration constant of $T=1.0853$. By dividing the CNN's raw logits by $T$ prior to the softmax activation, we align the model so that when the pipeline claims "90% confidence", it is statistically highly likely to be correct roughly 9 out of 10 times.
 
-![Reliability Diagram & Calibration Curve](/portfolio/images/reliability_diagram_ternary.png)
+![Reliability Diagram & Calibration Curve](/portfolio/images/exoplanets/reliability_diagram_ternary.png)
 *Figure 2: Expected Calibration Error (ECE) and Temperature Scaling aligning raw logits with actual statistical probability.*
 
 ## 5. Explainable AI & Counterfactual Ablation
 To evaluate whether the CNN relies on physical astrophysics rather than dataset artifacts, we established an **XAI Consensus** utilizing Grad-CAM, SHAP (Game Theory), and Integrated Gradients. 
 
-![XAI Heatmaps for Eclipsing Binary](/portfolio/images/xai_grid_tic185259483.png)
+![XAI Heatmaps for Eclipsing Binary](/portfolio/images/exoplanets/xai_grid_tic185259483.png)
 *Figure 3: XAI Heatmaps for Eclipsing Binary.*
 
 We then performed an **Ablation Analysis**, systematically masking out physical regions of the phase-folded light curve to observe the drop (or increase) in the model's confidence.

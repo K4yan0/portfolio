@@ -3,7 +3,7 @@ title: "Quand la mise à l'échelle robuste devient un décalage de représentat
 description: "Pourquoi des techniques de prétraitement mathématiquement supérieures peuvent dégrader fatalement un pipeline astrophysique si elles modifient la distribution statistique apprise par le réseau de neurones."
 pubDate: 2026-08-16
 tags: ["Astrophysique", "Machine Learning", "TESS", "Normalisation des données", "Décalage de représentation"]
-coverImage: "/portfolio/images/TESS.jpg"
+coverImage: "/portfolio/images/exoplanets/TESS.jpg"
 coverCredit: "Artist impression of the TESS spacecraft. NASA"
 ---
 
@@ -86,13 +86,13 @@ Au-delà des métriques de performance standard, nous avons audité la calibrati
 
 La dégradation n'est pas catastrophique (le modèle ne s'est pas effondré entièrement), mais la baisse mesurable de la précision couplée à un pic de variance prédictive du MC-Dropout raconte une histoire scientifique fascinante : le modèle était nettement moins sûr de ce qu'il voyait.
 
-![Incertitude prédictive : Z-Score vs MAD](/portfolio/images/mad_uncertainty_plot.png)
+![Incertitude prédictive : Z-Score vs MAD](/portfolio/images/exoplanets/mad_uncertainty_plot.png)
 *Légende : La variance prédictive moyenne via MC-Dropout augmente notablement lorsque les cibles sont traitées avec la mise à l'échelle MAD, reflétant la difficulté du modèle à cartographier la distribution d'amplitude non familière.*
 
 ## 6. Enquête XAI et Décalage de Représentation
 Pour comprendre *pourquoi* le CNN échouait, nous avons déployé **Grad-CAM** pour superposer des cartes thermiques d'attention directement sur les courbes de lumière pliées en phase.
 
-![Comparaison Grad-CAM : Z-Score vs MAD](/portfolio/images/mad_gradcam_comparison.png)
+![Comparaison Grad-CAM : Z-Score vs MAD](/portfolio/images/exoplanets/mad_gradcam_comparison.png)
 
 Sous l'échelle MAD, l'attribution est devenue moins stable et plus diffuse dans des cas représentatifs, bien que le modèle ait continué à prêter attention globalement aux régions de transit. Le résultat indique un **décalage de représentation** (representation mismatch) plutôt qu'une perte complète de localisation du transit.
 
